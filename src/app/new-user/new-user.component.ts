@@ -133,6 +133,7 @@ export class NewUserComponent implements OnInit {
 
   update() {
     debugger
+    this.form.get('txtPassword')?.disable();
     if (this.form.valid) {
 
       var user = new User();
