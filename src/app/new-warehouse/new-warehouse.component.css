@@ -1,0 +1,49 @@
+.gradient-custom {
+    background:
+        linear-gradient(rgba(66, 66, 66, 0.7),
+            /* Light white gradient */
+            rgba(0, 0, 0, 0.7)
+            /* Light white gradient */
+        ),
+        url('src/assets/WarehouseBG.jpg');
+    /* Background image */
+    background-size: cover;
+    /* Cover the entire area */
+    background-position: center;
+    /* Center the background image */
+    background-repeat: no-repeat;
+    /* Prevent repetition of the image */
+    height: 100vh;
+    /* Ensure it takes full viewport height */
+    display: flex;
+    /* Use flexbox to center content */
+    align-items: center;
+    /* Vertically center content */
+    justify-content: center;
+    /* Horizontally center content */
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.extra-styles {
+    font-size: 1.1rem;
+}
+
+.px-4 {
+
+    padding-right: 5rem !important;
+    padding-left: 5rem !important;
+}
+
+.invalid-feedback {
+    display: block;
+}

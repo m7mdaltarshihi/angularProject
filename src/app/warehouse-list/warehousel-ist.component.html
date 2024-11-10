@@ -1,0 +1,83 @@
+<div class="container mt-5 px-2">
+  <div class="d-flex justify-content-between align-items-center p-3 mb-4 border-bottom header bg-light shadow-sm rounded">
+    <!-- Left Section: Search Input -->
+    <div class="input-group" style="width: 300px;">
+        <input #txtLocationSearch 
+               type="text" 
+               class="form-control" 
+               placeholder="Search..." 
+               aria-label="Search"
+               style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"/>
+        <button class="btn btn-outline-secondary" (click)="Search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Middle Section: Reset Button and Filter Dropdown -->
+    <div class="d-flex align-items-center">
+        <!-- Reset Button -->
+        <button type="button" 
+        (click)="ResetFilters()"  
+          class="btn btn-outline-info me-3 d-flex align-items-center" 
+          style="border-radius: 8px; color: #007bff; border-color: #007bff;">
+         <i class="fas fa-sync-alt me-1"></i> Reset
+        </button>
+        
+        <!-- Filter Dropdown -->
+        <div>
+            <select (change)="FilterByStatus($event)" 
+                    class="form-select filter-select bg-light" 
+                    style="width: 180px; border-radius: 8px;">
+                <option selected disabled>Filter by Status</option>
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Right Section: Add Warehouse Button -->
+    <div>
+        <button type="button" 
+                routerLink="/home/newWarehouse" 
+                class="btn btn-primary" 
+                style="border-radius: 8px;">
+            + Add Warehouse
+        </button>
+    </div>
+</div>
+
+
+
+  
+    <!-- Table Section -->
+    <div class="table-responsive shadow rounded" style="background-color: #f8f9fa; padding: 20px;">
+      <table class="table align-middle table-hover mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Location</th>
+            <th scope="col">Manager</th>
+            <th scope="col">Capacity  <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="SortByCpacity()"></i></th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let warehouse of warehouses; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{warehouse.location}}</td>
+            <td>{{warehouse.manager}}</td>
+            <td>{{warehouse.capacity}}</td>
+            <td>{{ warehouse.status ? 'Active' : 'Inactive' }}</td>
+            <td>
+              <div class="d-flex gap-3 icon-group">
+                <i class="fa-solid fa-pen text-warning icon-btn" (click)="editWarehouse(warehouse.warehouseId)"></i>
+                <i class="fa-solid fa-trash text-danger icon-btn" (click)="deleteWarehouse(warehouse.warehouseId)"></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

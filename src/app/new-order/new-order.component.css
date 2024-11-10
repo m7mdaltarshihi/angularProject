@@ -1,0 +1,127 @@
+.gradient-custom {
+    background:
+        linear-gradient(rgba(66, 66, 66, 0.7),
+            /* Light white gradient */
+            rgba(0, 0, 0, 0.7)
+            /* Light white gradient */
+        ),
+        url('src/assets/orderBG.jpg');
+    /* Background image */
+    background-size: cover;
+    /* Cover the entire area */
+    background-position: center;
+    /* Center the background image */
+    background-repeat: no-repeat;
+    /* Prevent repetition of the image */
+    height: 100vh;
+    /* Ensure it takes full viewport height */
+    display: flex;
+    /* Use flexbox to center content */
+    align-items: center;
+    /* Vertically center content */
+    justify-content: center;
+    /* Horizontally center content */
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card {
+    border: none !important;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.extra-styles {
+    font-size: 1.1rem;
+}
+
+.px-4 {
+
+    padding-right: 5rem !important;
+    padding-left: 5rem !important;
+}
+
+.invalid-feedback {
+    display: block;
+}
+
+.addBtn:hover {
+
+    --bs-btn-color: #0d6efd !important;
+    --bs-btn-border-color: #0d6efd !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #0d6efd !important;
+    --bs-btn-hover-border-color: #0d6efd !important;
+    --bs-btn-focus-shadow-rgb: 13, 110, 253 !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #0d6efd !important;
+    --bs-btn-active-border-color: #0d6efd !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #0d6efd !important;
+    --bs-btn-disabled-bg: transparent !important;
+    --bs-btn-disabled-border-color: #0d6efd !important;
+    --bs-gradient: none !important;
+    color: #fff !important;
+
+}
+
+.select-no-arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    padding-right: 0;
+}
+
+.select-no-arrow option {
+    background-color: white;
+    /* Keeps the options background white */
+}
+
+.fancy-button {
+    border-radius: 50px;
+    padding: 0.2rem 1.4rem;
+    font-size: 1.5rem;
+    color: #ffffff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.fancy-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+/*////////////////////*/
+
+.box-shadow {
+    -webkit-box-shadow: 0 1px 1px rgba(72, 78, 85, .6);
+    box-shadow: 0 1px 1px rgba(72, 78, 85, .6);
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    width: 31%;
+    margin-right: 10px;
+}
+
+.box-shadow:hover {
+    -webkit-box-shadow: 0 20px 40px rgba(100, 150, 255, 0.5);
+    /* Soft blue shadow */
+    box-shadow: 0 20px 40px rgba(100, 150, 255, 0.5);
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -o-transform: translateY(-15px);
+    transform: translateY(-15px);
+}

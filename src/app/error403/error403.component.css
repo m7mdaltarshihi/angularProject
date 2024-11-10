@@ -1,0 +1,71 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #233142 !important;
+    width: 100% !important;
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.whistle {
+    width: 20%;
+    fill: #f95959;
+    margin: 100px 40%;
+    text-align: left;
+    transform-origin: 80% 30%;
+    animation: wiggle .2s infinite;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(3deg);
+    }
+}
+
+h1 {
+    margin-top: -100px;
+    margin-bottom: 20px;
+    color: #facf5a;
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 90px;
+    font-weight: 800;
+}
+
+h2 {
+    color: #455d7a;
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.home-button {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #233142;
+    background-color: #facf5a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-family: 'Raleway', sans-serif;
+}
+
+.home-button:hover {
+    background-color: #f9b64e;
+}

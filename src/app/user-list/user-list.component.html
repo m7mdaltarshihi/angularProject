@@ -1,0 +1,134 @@
+<div class="container mt-5 px-2">
+  <div class="d-flex justify-content-between align-items-center p-3 mb-4 border-bottom header bg-light shadow-sm rounded">
+    
+    <!-- Left Section: Search Input -->
+    <div class="input-group" style="width: 300px;">
+        <input #txtNameSearch 
+               type="text" 
+               class="form-control" 
+               placeholder="Search..." 
+               aria-label="Search"
+               style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"/>
+        <button class="btn btn-outline-secondary" (click)="Search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Middle Section: Reset Button and Filter Dropdown -->
+    <div class="d-flex align-items-center">
+        
+        <!-- Reset Button -->
+        <button type="button" 
+        (click)="ResetFilters()"  
+          class="btn btn-outline-info me-3 d-flex align-items-center" 
+          style="border-radius: 8px; color: #007bff; border-color: #007bff;">
+         <i class="fas fa-sync-alt me-1"></i> Reset
+        </button>
+        
+        <!-- Filter Dropdown -->
+        <div>
+            <select (change)="SortByRole($event)" 
+                    class="form-select filter-select bg-light" 
+                    style="width: 180px; border-radius: 8px;">
+                <option selected disabled>Filter by Role</option>
+                <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Right Section: Add User Button -->
+    <div>
+        <button type="button" 
+                routerLink="/home/newUser" 
+                class="btn btn-primary" 
+                style="border-radius: 8px;">
+            <i class="fa-solid fa-person-circle-plus" style="color: #fff; font-size: 1.2rem;"></i> Add User
+        </button>
+    </div>
+</div>
+
+
+  <!-- Table Section -->
+  <div class="table-responsive shadow rounded" style="background-color: #f8f9fa; padding: 20px;">
+    <table class="table align-middle table-hover mb-0">
+      <thead class="bg-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Roles</th>
+          <th scope="col">Warehouse</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.userName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.roles}}</td>
+          <td>{{ user.warehouse ? user.warehouse.location : 'N/A' }}</td>
+          <td hidden #txtUserId >{{user.userId}}</td>
+          <td>
+            <div class="d-flex gap-3 icon-group">
+              <i data-bs-toggle="modal" data-bs-target="#roleModal" class="fa-solid fa-person-circle-question text-success icon-btn" (click)="LoadData(user.userName)"></i>
+              <i class="fa-solid fa-info text-primary icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Details" ></i>
+              <i class="fa-solid fa-pen text-warning icon-btn" (click)="editUser(user.userId)"></i>
+              <i class="fa-solid fa-trash text-danger icon-btn" (click)="deleteUser(user.userId)"></i>
+              
+            </div>
+          </td>
+          <div id="roleModal" class="modal fade" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                  <h5 class="modal-title" id="roleModalLabel">Assign Role</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="roleForm">
+                    <div class="row g-3">
+                      <div class="col-12 col-md-8">
+                        <div class="form-outline">
+                          <label class="form-label" for="txtName">Name</label>
+                          <input 
+                            type="text" 
+                            class="form-control form-control-lg"  
+                            id="txtName"
+                            formControlName="txtName" 
+                            placeholder="Enter Name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="selectRole">Role</label>
+                          <select 
+                            class="form-select form-control-lg"  
+                            id="selectRole"
+                            formControlName="selectRole">
+                            <option selected disabled>Choose a Role</option>
+                            <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" style="color: #fff !important;" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="AssignRole()">Assign Role</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </tr>
+        <!-- Repeat rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>

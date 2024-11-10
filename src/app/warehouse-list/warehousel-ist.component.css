@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.search {
+
+    top: 6px;
+    left: 10px;
+}
+
+.form-control {
+
+    border: none;
+    padding-left: 32px;
+}
+
+.form-control:focus {
+
+    border: none;
+    box-shadow: none;
+}
+
+.green {
+
+    color: green;
+}
+
+.icons-dash {
+    color: rgb(179, 179, 179);
+    font-size: smaller;
+}
+
+i {
+    font-size: 15px;
+}
+
+/* Styling for the search icon inside the input */
+.search-icon {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+/* Smaller select and button styling */
+.filter-select {
+    padding: 6px 12px;
+    font-size: 14px;
+    min-width: 150px;
+}
+
+.add-user-btn {
+    font-size: 14px;
+    padding: 6px 14px;
+}
+
+/* Center positioning for filter */
+.filter-container {
+    margin-left: auto;
+    margin-right: 2rem;
+    /* Adjust to position slightly right of center */
+}
+
+/* Hover effects for action icons */
+.icon-group i {
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.icon-group i:hover {
+    transform: scale(1.4);
+}
+
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.header {
+
+    background-color: #e5f3ff;
+    height: 71px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 32px;
+}
+
+.fa-search:hover {
+
+    color: #aca5a5 !important;
+    cursor: pointer;
+}
+
+div .col {
+    margin-right: 20px;
+}
+
+.icon-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-btn {
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icon-btn:hover {
+    color: #0056b3;
+    /* Change to any desired color */
+    transform: scale(1.1);
+    /* Slightly enlarge the icon on hover */
+}
+
+/* Optional: Styling for table rows and cells for better readability */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: center;
+}
+
+table td {
+    font-size: 14px;
+}
+
+table th {
+    background-color: #f8f9fa;
+    /* Light background for headers */
+    font-weight: bold;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Zebra striping for even rows */
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+    /* Highlight row on hover */
+    cursor: pointer;
+}

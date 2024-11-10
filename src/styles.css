@@ -1,0 +1,16 @@
+.icon-hover {
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.icon-hover:hover {
+    color: #4040e0;
+    /* Slightly lighter blue for info and edit icons */
+    transform: scale(1.2);
+    /* Slightly larger on hover */
+}
+
+.icon-hover.text-danger:hover {
+    color: #ff6666;
+    /* Slightly lighter red for delete icon */
+}

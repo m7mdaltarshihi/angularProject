@@ -1,0 +1,93 @@
+<div class="container mt-5 px-2">
+  <div class="d-flex justify-content-between align-items-center p-3 mb-4 border-bottom header bg-light shadow-sm rounded">
+    
+    <!-- Left Section: Search Input -->
+    <div class="input-group" style="width: 300px;">
+        <input #txtCustomerNameSearch 
+               type="text" 
+               class="form-control" 
+               placeholder="Search..." 
+               aria-label="Search"
+               style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"/>
+        <button class="btn btn-outline-secondary" (click)="Search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Middle Section: Reset Button and Filter Dropdown -->
+    <div class="d-flex align-items-center">
+        
+        <!-- Reset Button -->
+        <button type="button" 
+        (click)="ResetFilters()"  
+          class="btn btn-outline-info me-3 d-flex align-items-center" 
+          style="border-radius: 8px; color: #007bff; border-color: #007bff;">
+         <i class="fas fa-sync-alt me-1"></i> Reset
+        </button>
+
+        
+        <!-- Filter Dropdown -->
+        <div>
+            <select (change)="StatusSort($event)" 
+                    class="form-select filter-select bg-light" 
+                    style="width: 180px; border-radius: 8px;">
+                <option selected disabled>Filter by Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Delivered">Delivered</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Right Section: Add Order Button -->
+    <div>
+        <button type="button" 
+                routerLink="/home/newOrder" 
+                class="btn btn-primary" 
+                style="border-radius: 8px;">
+            + Add Order
+        </button>
+    </div>
+</div>
+
+  
+    <!-- Table Section -->
+    <div class="table-responsive shadow rounded" style="background-color: #f8f9fa; padding: 20px;">
+      <table class="table align-middle table-hover mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Shipping Address</th>
+            <th scope="col">Payment Method</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Date <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="DateSort()"></i></th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ordr of orders; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{ordr.customerName}}</td>
+            <td>{{ordr.shippingAddress}}</td>
+            <td>{{ordr.paymentMethod}}</td>
+            <td >{{ordr.product.name}}</td>
+            <td>{{ordr.quantity}}</td>
+            <td>{{ordr.date| date:'yyyy-MM-dd'}}</td>
+            <td>{{ordr.status}}</td>
+            <td>
+              <div class="d-flex gap-3 icon-group">
+                <i class="fa-solid fa-info text-primary icon-btn"></i>
+                <i class="fa-solid fa-pen text-warning icon-btn" (click)="LoadFormData(ordr.orderId)"></i>
+                <i class="fa-solid fa-trash text-danger icon-btnr" (click)="deleteOrder(ordr.orderId)"></i>
+              </div>
+            </td>
+          </tr>
+ 
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
