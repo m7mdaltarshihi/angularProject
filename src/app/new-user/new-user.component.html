@@ -1,122 +1,97 @@
 <section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-      <div class="row justify-content-center align-items-center h-100">
-        <div class="col-12 col-lg-9 col-xl-7">
-          <div class="card shadow-lg border-0" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">User Registration Form</h3>
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">User Update Form</h3>
-              <form [formGroup]="form">
-  
-                <!-- First Name and Last Name -->
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                      <label class="form-label">Usename</label>
-                      <input 
-                        type="text" 
-                        class="form-control form-control-lg"
-                        formControlName="txtUserName" 
-                        [ngClass]="{'is-invalid': form.controls['txtUserName'].touched && form.controls['txtUserName'].hasError('required')}" />
-                      <div class="invalid-feedback" *ngIf="form.controls['txtUserName'].touched && form.controls['txtUserName'].hasError('required')">
-                        Please choose a Username.
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                      <label class="form-label">Name</label>
-                      <input 
-                        type="text" 
-                        class="form-control form-control-lg"  
-                        formControlName="txtName" 
-                        [ngClass]="{'is-invalid': form.controls['txtName'].touched && form.controls['txtName'].hasError('required')}" />
-                      <div class="invalid-feedback" *ngIf="form.controls['txtName'].touched && form.controls['txtName'].hasError('required')">
-                        Please choose a Name.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-  
-                <!-- Email -->
-                <div class="row mb-3">
-                  <div [ngClass]="{'col-md-6': !isEdit, 'col-12': isEdit}">
-                    <div class="form-outline">
-                      <label class="form-label">Email</label>
-                      <input 
-                        type="email" 
-                        class="form-control form-control-lg"
-                        formControlName="txtEmail" 
-                        [ngClass]="{'is-invalid': form.controls['txtEmail'].touched && (form.controls['txtEmail'].hasError('required') || form.controls['txtEmail'].hasError('email'))}" />
-                      <div class="invalid-feedback" *ngIf="form.controls['txtEmail'].touched && (form.controls['txtEmail'].hasError('required') || form.controls['txtEmail'].hasError('email'))">
-                        Please enter a valid Email.
-                      </div>
-                    </div>
-                  </div>
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-lg border-0" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">{{ 'UserForm.registrationTitle' | translate }}</h3>
+            <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">{{ 'UserForm.updateTitle' | translate }}</h3>
+            <form [formGroup]="form">
 
-                  <div class="col-md-6" *ngIf="!isEdit">
-                    <div class="form-outline">
-                      <label class="form-label">Password</label>
-                      <input 
-                        type="password" 
-                        class="form-control form-control-lg"
-                        formControlName="txtPassword" 
-                        [ngClass]="{'is-invalid': form.controls['txtPassword'].touched &&  form.controls['txtPassword'].hasError('required') } " />
-                      <div class="invalid-feedback"*ngIf="form.controls['txtPassword'].touched && form.controls['txtPassword'].hasError('required')">
-                        Please enter a valid Password of 8 charachers.
-                      </div>
+              <!-- First Name and Last Name -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'UserForm.username' | translate }}</label>
+                    <input type="text" class="form-control form-control-lg" formControlName="txtUserName" [ngClass]="{'is-invalid': form.controls['txtUserName'].touched && form.controls['txtUserName'].hasError('required')}" />
+                    <div class="invalid-feedback" *ngIf="form.controls['txtUserName'].touched && form.controls['txtUserName'].hasError('required')">
+                      {{ 'UserForm.invalidUsername' | translate }}
                     </div>
                   </div>
                 </div>
 
-                <!-- Role and Warehouse -->
-                <div class="row mb-3">
-                  <div class="col-6">
-                    <div class="form-outline">
-                      <label class="form-label">Role</label>
-                      <select 
-                        class="form-select form-control-lg"  
-                        formControlName="selectRole"
-                        [ngClass]="{'is-invalid': form.controls['selectRole'].touched && form.controls['selectRole'].hasError('required')}">
-                        <option selected disabled>Choose a Role</option>
-                        <option   *ngFor="let role of roles"  [value]="role.name">{{role.name}}</option>
-
-                      </select>
-                      <div class="invalid-feedback" *ngIf="form.controls['selectRole'].touched && form.controls['selectRole'].hasError('required')">
-                        Please Assign a Role.
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="col-6" *ngIf="isDisplay">
-                    <div class="form-outline">
-                      <label class="form-label">Warehouse</label>
-                      <select 
-                        class="form-select form-control-lg"  formControlName="selectWarehouse" >
-                        <option selected disabled>Choose a Warehouse</option>
-                        <option  *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId">{{warehouse.location}}</option>
-
-                      </select>
-                      <!-- <div class="invalid-feedback" *ngIf="form.controls['selectWarehouse'].touched && form.controls['selectWarehouse'].hasError('required')">
-                        Please Assign a Warehouse.
-                      </div> -->
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'UserForm.name' | translate }}</label>
+                    <input type="text" class="form-control form-control-lg" formControlName="txtName" [ngClass]="{'is-invalid': form.controls['txtName'].touched && form.controls['txtName'].hasError('required')}" />
+                    <div class="invalid-feedback" *ngIf="form.controls['txtName'].touched && form.controls['txtName'].hasError('required')">
+                      {{ 'UserForm.invalidName' | translate }}
                     </div>
                   </div>
                 </div>
-                <input hidden formControlName="txtId" *ngIf="isEdit">
+              </div>
 
-                <!-- Submit Button -->
-                <div class="text-center mt-5 pt-2 ">
-                  <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="Submit" (click)="submit()"/>
-                  <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="Update" (click)="update()"/>
+              <!-- Email -->
+              <div class="row mb-3">
+                <div [ngClass]="{'col-md-6': !isEdit, 'col-12': isEdit}">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'UserForm.email' | translate }}</label>
+                    <input type="email" class="form-control form-control-lg" formControlName="txtEmail" [ngClass]="{'is-invalid': form.controls['txtEmail'].touched && (form.controls['txtEmail'].hasError('required') || form.controls['txtEmail'].hasError('email'))}" />
+                    <div class="invalid-feedback" *ngIf="form.controls['txtEmail'].touched && (form.controls['txtEmail'].hasError('required') || form.controls['txtEmail'].hasError('email'))">
+                      {{ 'UserForm.invalidEmail' | translate }}
+                    </div>
+                  </div>
                 </div>
-  
-              </form>
-            </div>
+
+                <div class="col-md-6" *ngIf="!isEdit">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'UserForm.password' | translate }}</label>
+                    <input type="password" class="form-control form-control-lg" formControlName="txtPassword" [ngClass]="{'is-invalid': form.controls['txtPassword'].touched && form.controls['txtPassword'].hasError('required')}" />
+                    <div class="invalid-feedback" *ngIf="form.controls['txtPassword'].touched && form.controls['txtPassword'].hasError('required')">
+                      {{ 'UserForm.invalidPassword' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Role and Warehouse -->
+              <div class="row mb-3">
+                <div class="col-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'UserForm.role' | translate }}</label>
+                    <select class="form-select form-control-lg" formControlName="selectRole" [ngClass]="{'is-invalid': form.controls['selectRole'].touched && form.controls['selectRole'].hasError('required')}">
+                      <option selected disabled>{{ 'UserForm.chooseRole' | translate }}</option>
+                      <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.controls['selectRole'].touched && form.controls['selectRole'].hasError('required')">
+                      {{ 'UserForm.invalidRole' | translate }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6" *ngIf="isDisplay">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'UserForm.warehouse' | translate }}</label>
+                    <select class="form-select form-control-lg" formControlName="selectWarehouse">
+                      <option selected disabled>{{ 'UserForm.chooseWarehouse' | translate }}</option>
+                      <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId">{{ warehouse.location }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <input hidden formControlName="txtId" *ngIf="isEdit">
+
+              <!-- Submit Button -->
+              <div class="text-center mt-5 pt-2">
+                <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="{{ 'UserForm.submit' | translate }}" (click)="submit()"/>
+                <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="{{ 'UserForm.update' | translate }}" (click)="update()"/>
+              </div>
+
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

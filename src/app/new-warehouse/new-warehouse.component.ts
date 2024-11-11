@@ -51,10 +51,11 @@ export class NewWarehouseComponent implements OnInit {
 
     this.warehouseService.LoadById(this.warehouseId).subscribe({
       next: data => {
+        debugger
         this.form.controls['txtId'].setValue(data.warehouseId)
         this.form.controls['txtLocation'].setValue(data.location)
         this.form.controls['txtManager'].setValue(data.manager)
-        this.form.controls['txtCapacity'].setValue(data.capacity)
+        this.form.controls['txtCapacity'].setValue(data.maxCapacity)
         this.form.controls['txtStatus'].setValue(data.status)
 
       }
@@ -66,7 +67,7 @@ export class NewWarehouseComponent implements OnInit {
       var warehouse = new Warehouse();
       warehouse.location = this.form.value["txtLocation"]
       warehouse.manager = this.form.value["txtManager"]
-      warehouse.capacity = parseInt(this.form.value["txtCapacity"])
+      warehouse.maxCapacity = parseInt(this.form.value["txtCapacity"])
       warehouse.status = this.parseBoolean(this.form.value["txtStatus"]);
       this.warehouseService.insert(warehouse).subscribe({
         next: data => {
@@ -90,12 +91,13 @@ export class NewWarehouseComponent implements OnInit {
   }
 
   Update() {
+    debugger
     if (this.form.valid) {
       var warehouse = new Warehouse();
       warehouse.warehouseId = this.form.value["txtId"]
       warehouse.location = this.form.value["txtLocation"]
       warehouse.manager = this.form.value["txtManager"]
-      warehouse.capacity = this.form.value["txtCapacity"]
+      warehouse.maxCapacity = this.form.value["txtCapacity"]
       warehouse.status = this.parseBoolean(this.form.value["txtStatus"]);
 
 

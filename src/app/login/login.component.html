@@ -2,21 +2,30 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-white text-dark" style="border-radius: 1rem;">
+        <div class="card bg-white text-dark position-relative" style="border-radius: 1rem;">
+          <!-- Language Selection Dropdown positioned top-right -->
+          <div class="position-absolute top-0 end-0 m-3">
+            <select class="form-select form-select-sm" (change)="changeLanguage()" #language>
+              <option selected disabled>{{'Login.language' | translate}}</option>
+              <option value="en">{{'Login.english' | translate}}</option>
+              <option value="ar">{{'Login.arabic' | translate}}</option>
+            </select>
+          </div>
+
           <div class="card-body p-5 text-center">
             <form [formGroup]="form">
               <div class="mb-md-5 mt-md-4 pb-5">
-                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                <p class="text-dark mb-5">Please enter your Username and Password</p>
+                <h2 class="fw-bold mb-2 text-uppercase">{{'Login.login' | translate}}</h2>
+                <p class="text-dark mb-5">{{'Login.request' | translate}}</p>
 
                 <!-- Username Field -->
                 <div class="row mb-4">
-                  <label class="col-3 col-form-label text-start text-dark fw-bold">Username</label>
+                  <label class="col-3 col-form-label text-start text-dark fw-bold">{{'Login.username' | translate}}</label>
                   <div class="col-9">
                     <input
                       type="text"
                       class="form-control form-control-lg"
-                      placeholder="Username"
+                      [placeholder]="'Login.username' | translate"
                       formControlName="txtUserName"
                       [ngClass]="{
                         'is-invalid': form.controls['txtUserName'].touched &&
@@ -28,20 +37,20 @@
                       *ngIf="form.controls['txtUserName'].touched &&
                       form.controls['txtUserName'].hasError('required')"
                     >
-                      Please choose a Username.
+                      {{'Login.usernameValidation' | translate}}
                     </div>
                   </div>
                 </div>
 
                 <!-- Password Field -->
                 <div class="row mb-4">
-                  <label class="col-3 col-form-label text-start text-dark fw-bold" >Password</label>
+                  <label class="col-3 col-form-label text-start text-dark fw-bold">{{'Login.password' | translate}}</label>
                   <div class="col-9">
                     <input
                       type="password"
                       formControlName="txtPassword"
                       class="form-control form-control-lg"
-                      placeholder="Password"
+                      [placeholder]="'Login.password' | translate"
                       [ngClass]="{
                         'is-invalid': form.controls['txtPassword'].touched &&
                         form.controls['txtPassword'].hasError('required')
@@ -52,12 +61,13 @@
                       *ngIf="form.controls['txtPassword'].touched &&
                       form.controls['txtPassword'].hasError('required')"
                     >
-                      Please choose a Password.
+                      {{'Login.passwordValidation' | translate}}
                     </div>
                   </div>
                 </div>
 
-                <button class="btn btn-dark btn-lg px-5 mt-5" type="submit" (click)="login()">Login</button>
+                <!-- Submit Button -->
+                <button class="btn btn-dark btn-lg px-5 mt-5" type="submit" (click)="login()">{{'Login.login' | translate}}</button>
               </div>
             </form>
           </div>

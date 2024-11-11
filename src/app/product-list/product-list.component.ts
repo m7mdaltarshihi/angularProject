@@ -6,6 +6,7 @@ import { WarehouseService } from '../services/warehouse.service';
 import { Warehouse } from '../DTOs/Warehouse';
 import Swal from 'sweetalert2';
 import { count } from 'rxjs';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-product-list',
@@ -18,6 +19,8 @@ export class ProductListComponent implements OnInit {
   isDecending: boolean = false
   warehouses!: Warehouse[]
   count: number = 0
+  productDetails?: Product
+  enable: boolean = false
   @ViewChild('txtProductNameSearch') productName!: ElementRef
   constructor(private productService: ProductService, private router: Router, private warehouseService: WarehouseService) {
 
@@ -66,12 +69,12 @@ export class ProductListComponent implements OnInit {
     this.productService.LoadAllById(warehouseId).subscribe({
 
       next: data => {
+        debugger
         this.products = data
         data.forEach((element: any) => {
           if (element.stock <= 10) {
             this.count++
           }
-          console.log(this.count)
         });
       }
     })
@@ -81,7 +84,8 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/home/newProduct'], { queryParams: { id: id } })
   }
 
-  deleteProduct(productId: number) {
+  deleteProduct(id: number) {
+    debugger
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -92,21 +96,46 @@ export class ProductListComponent implements OnInit {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.productService.Delete(productId).subscribe({
+        this.productService.Delete(id).subscribe({
           next: data => {
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Your product has been deleted.",
               icon: "success"
             });
-          }
+            this.LoadAllById()
+          },
+
         })
 
       }
-      setTimeout(() => this.loadAll(), 200);
     });
+
   }
 
+  loadById(id: number) {
+    debugger
+    this.enable = true
+    this.productService.LoadById(id).subscribe({
+      next: data => {
+        this.productDetails = data
+        debugger
+        // Get modal element
+        const modalElement = document.getElementById('detailsModal');
+
+        // Ensure modal element exists before trying to open
+        if (modalElement) {
+          const modal = new bootstrap.Modal(modalElement);
+          modal.show(); // Open the modal after loading the data
+        } else {
+          console.error('Modal element not found!');
+        }
+      },
+      error: err => {
+        console.error('Error loading product:', err);
+      }
+    });
+  }
 
 
   Search() {
@@ -207,6 +236,7 @@ export class ProductListComponent implements OnInit {
     })
   }
   ResetFilters() {
+    this.count = 0
     this.LoadAllById()
   }
 }

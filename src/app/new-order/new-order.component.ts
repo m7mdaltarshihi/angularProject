@@ -43,7 +43,7 @@ export class NewOrderComponent implements OnInit {
   }
 
   closeModal() {
-    debugger
+
     // Initialize modal instance
     const modal = Modal.getInstance(this.productModal.nativeElement);
     if (modal) {
@@ -82,9 +82,24 @@ export class NewOrderComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.productService.LoadAll().subscribe({
+    var info = localStorage.getItem('UserInfo');
+
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
+      console.log(warehouseId);
+    } else {
+      console.log('No user info found in localStorage');
+    }
+    this.productService.LoadAllById(warehouseId).subscribe({
       next: data => {
-        this.products = data
+        this.products = []
+        data.forEach((element: any) => {
+          if (element.stock > 0) {
+
+            this.products.push(element)
+          }
+        });
       }
     })
   }
@@ -93,7 +108,7 @@ export class NewOrderComponent implements OnInit {
     this.productService.LoadById(productId).subscribe({
       next: data => {
         if (data != undefined) {
-
+          debugger
           this.product = data
           this.form.controls["selectProduct"].setValue(productId);
           this.closeModal()
@@ -172,7 +187,7 @@ export class NewOrderComponent implements OnInit {
       order.customerName = this.form.value["txtCustomerName"]
       order.status = this.form.value["selectStatus"]
       order.date = this.form.value["txtDate"]
-      order.productid = this.productId
+      order.productid = this.product.productId
 
       Swal.fire({
         title: "Do you want to save the changes?",

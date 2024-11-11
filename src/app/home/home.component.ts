@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Menu } from '../Menu';
+import { User } from '../DTOs/User';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,13 @@ export class HomeComponent implements OnInit {
   filteredMenu: any = []
   roles!: string[]
   name!: string
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  user!: User
+  @ViewChild('language') language!: ElementRef
+
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router
+    , private translateService: TranslateService
+  ) {
     this.liMenu = Menu;
     debugger
     const storedRoles = localStorage.getItem("UserRoles");
@@ -43,11 +51,34 @@ export class HomeComponent implements OnInit {
         }
       });
     });
+
+
+    const storedUser = localStorage.getItem('UserInfo')
+    if (storedUser) {
+      this.user = JSON.parse(storedUser)
+      console.log(this.user)
+
+    }
   }
   @ViewChild('view') goToView!: ElementRef
   ngOnInit(): void {
     // this.name = this.activatedRoute.snapshot.queryParams["username"]
   }
+  changeLanguage() {
+    this.translateService.use(this.language.nativeElement.value);
+
+    const body = document.getElementsByTagName('body')[0];
+
+
+    if (this.language.nativeElement.value === 'ar') {
+      body.dir = 'rtl';
+      body.style.textAlign = 'right';
+    } else {
+      body.dir = 'ltr';
+      body.style.textAlign = 'left';
+    }
+  }
+
   viewAll(view: string) {
     this.router.navigate([`/home/${view}`]);
   }

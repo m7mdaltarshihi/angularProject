@@ -6,7 +6,7 @@
         <input #txtNameSearch 
                type="text" 
                class="form-control" 
-               placeholder="Search..." 
+               placeholder="{{ 'Header.searchPlaceholder' | translate }}" 
                aria-label="Search"
                style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"/>
         <button class="btn btn-outline-secondary" (click)="Search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
@@ -22,7 +22,7 @@
         (click)="ResetFilters()"  
           class="btn btn-outline-info me-3 d-flex align-items-center" 
           style="border-radius: 8px; color: #007bff; border-color: #007bff;">
-         <i class="fas fa-sync-alt me-1"></i> Reset
+         <i class="fas fa-sync-alt me-1"></i> {{ 'Header.reset' | translate }}
         </button>
         
         <!-- Filter Dropdown -->
@@ -30,7 +30,7 @@
             <select (change)="SortByRole($event)" 
                     class="form-select filter-select bg-light" 
                     style="width: 180px; border-radius: 8px;">
-                <option selected disabled>Filter by Role</option>
+                <option selected disabled>{{ 'Header.filterByRole' | translate }}</option>
                 <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
             </select>
         </div>
@@ -42,11 +42,10 @@
                 routerLink="/home/newUser" 
                 class="btn btn-primary" 
                 style="border-radius: 8px;">
-            <i class="fa-solid fa-person-circle-plus" style="color: #fff; font-size: 1.2rem;"></i> Add User
+            <i class="fa-solid fa-person-circle-plus" style="color: #fff; font-size: 1.2rem;"></i> {{ 'Header.addUser' | translate }}
         </button>
     </div>
 </div>
-
 
   <!-- Table Section -->
   <div class="table-responsive shadow rounded" style="background-color: #f8f9fa; padding: 20px;">
@@ -54,17 +53,19 @@
       <thead class="bg-light">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Username</th>
-          <th scope="col">Email</th>
-          <th scope="col">Roles</th>
-          <th scope="col">Warehouse</th>
-          <th scope="col">Actions</th>
+          <th scope="col">{{ 'Table.image' | translate }}</th>
+          <th scope="col">{{ 'Table.name' | translate }}</th>
+          <th scope="col">{{ 'Table.username' | translate }}</th>
+          <th scope="col">{{ 'Table.email' | translate }}</th>
+          <th scope="col">{{ 'Table.roles' | translate }}</th>
+          <th scope="col">{{ 'Table.warehouse' | translate }}</th>
+          <th scope="col">{{ 'Table.actions' | translate }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let user of users; let i = index">
           <td>{{i+1}}</td>
+          <td><img [src]="user.image ? user.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtQK-vPXWRiGQdmA-tTZUsUhtqEyiOyE10Mg&s'" class="img-fluid user-image"></td>
           <td>{{user.name}}</td>
           <td>{{user.userName}}</td>
           <td>{{user.email}}</td>
@@ -74,17 +75,15 @@
           <td>
             <div class="d-flex gap-3 icon-group">
               <i data-bs-toggle="modal" data-bs-target="#roleModal" class="fa-solid fa-person-circle-question text-success icon-btn" (click)="LoadData(user.userName)"></i>
-              <i class="fa-solid fa-info text-primary icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Details" ></i>
-              <i class="fa-solid fa-pen text-warning icon-btn" (click)="editUser(user.userId)"></i>
+              <i class="fa-solid fa-pen text-primary icon-btn" (click)="editUser(user.userId)"></i>
               <i class="fa-solid fa-trash text-danger icon-btn" (click)="deleteUser(user.userId)"></i>
-              
             </div>
           </td>
           <div id="roleModal" class="modal fade" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                  <h5 class="modal-title" id="roleModalLabel">Assign Role</h5>
+                  <h5 class="modal-title" id="roleModalLabel">{{ 'Modal.assignRole' | translate }}</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -92,24 +91,24 @@
                     <div class="row g-3">
                       <div class="col-12 col-md-8">
                         <div class="form-outline">
-                          <label class="form-label" for="txtName">Name</label>
+                          <label class="form-label" for="txtName">{{ 'Modal.name' | translate }}</label>
                           <input 
                             type="text" 
                             class="form-control form-control-lg"  
                             id="txtName"
                             formControlName="txtName" 
-                            placeholder="Enter Name"
+                            placeholder="{{ 'Modal.enterName' | translate }}"
                           />
                         </div>
                       </div>
                       <div class="col-12 col-md-4">
                         <div class="form-outline">
-                          <label class="form-label" for="selectRole">Role</label>
+                          <label class="form-label" for="selectRole">{{ 'Modal.role' | translate }}</label>
                           <select 
                             class="form-select form-control-lg"  
                             id="selectRole"
                             formControlName="selectRole">
-                            <option selected disabled>Choose a Role</option>
+                            <option selected disabled>{{ 'Modal.chooseRole' | translate }}</option>
                             <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
                           </select>
                         </div>
@@ -118,8 +117,8 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" style="color: #fff !important;" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" (click)="AssignRole()">Assign Role</button>
+                  <button type="button" class="btn btn-secondary" style="color: #fff !important;" data-bs-dismiss="modal">{{ 'Modal.close' | translate }}</button>
+                  <button type="button" class="btn btn-primary" (click)="AssignRole()">{{ 'Modal.assignRoleButton' | translate }}</button>
                 </div>
               </div>
             </div>

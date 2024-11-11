@@ -169,3 +169,13 @@ table tbody tr:hover {
     border-top: 2px solid #007bff;
     /* Clean border on the footer */
 }
+
+.user-image {
+    max-width: 70px;
+    /* Controls max width for consistency */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: cover;
+    /* Ensure the image fits well within its container */
+    border-radius: 50%;
+}

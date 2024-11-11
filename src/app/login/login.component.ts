@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignIn } from '../DTOs/SignIn';
 import { UserService } from '../services/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,29 @@ export class LoginComponent implements OnInit {
   // username!:string
 
   form!: FormGroup
-  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService) {
+  @ViewChild('language') language!: ElementRef
+  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService,
+    private translate: TranslateService
+  ) {
 
   }
   ngOnInit(): void {
     this.buildForm()
+  }
+
+  changeLanguage() {
+    this.translate.use(this.language.nativeElement.value);
+
+    const body = document.getElementsByTagName('body')[0];
+
+
+    if (this.language.nativeElement.value === 'ar') {
+      body.dir = 'rtl';
+      body.style.textAlign = 'right';
+    } else {
+      body.dir = 'ltr';
+      body.style.textAlign = 'left';
+    }
   }
 
   buildForm() {

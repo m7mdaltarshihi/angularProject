@@ -98,6 +98,7 @@ export class NewUserComponent implements OnInit {
   }
 
 
+
   submit() {
     if (this.form.valid) {
       debugger
@@ -108,6 +109,7 @@ export class NewUserComponent implements OnInit {
       user.roleName = this.form.value["selectRole"]
       user.warehouseId = parseInt(this.form.value["selectWarehouse"])
       user.password = this.form.value["txtPassword"]
+
 
 
       this.userService.addUser(user).subscribe({

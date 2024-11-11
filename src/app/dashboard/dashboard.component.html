@@ -1,93 +1,129 @@
 <div class="container mt-5">
-    <!-- Admin View -->
-    <div class="mb-5">
-      <h3>Admin Dashboard</h3>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Users Count</h5>
-              <p class="display-4 text-primary">120</p>
-            </div>
+  <!-- Dashboard Header -->
+  <h1 class="text-center mb-5 fw-bold text-secondary">{{ 'Dashboard.overview' | translate }}</h1>
+
+  <!-- Admin Overview Section -->
+  <div class="mb-5">
+    <h3 class="text-secondary">{{ 'Dashboard.adminOverview' | translate }}</h3>
+    <div class="row g-4">
+      <!-- Total Users -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body text-center">
+            <h5 class="card-title text-muted">{{ 'Dashboard.totalUsers' | translate }}</h5>
+            <p class="display-5 text-primary fw-bold">{{ totalUsers }}</p>
           </div>
         </div>
-  
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Recent User Activity</h5>
-              <ul>
-                <li>John Doe logged in</li>
-                <li>Mary posted a new comment</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">System Health</h5>
-              <p class="text-success">Operational</p>
-              <p class="text-warning">Minor Issues</p>
-            </div>
+      </div>
+
+      <!-- Recent User Additions -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted">{{ 'Dashboard.newUsers' | translate }}</h5>
+            <ul class="list-unstyled ps-2" style="list-style-type: none;">
+              <li *ngFor="let user of recentUsers" class="text-secondary">{{ user.name }}</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  
-    <!-- Manager View -->
-    <div class="mb-5">
-      <h3>Manager Dashboard</h3>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Warehouses Count</h5>
-              <p class="display-4 text-info">5</p>
-            </div>
+  </div>
+
+  <!-- Order Insights Section -->
+  <div class="mb-5">
+    <h3 class="text-secondary">{{ 'Dashboard.orderInsights' | translate }}</h3>
+    <div class="row g-4">
+      <!-- Total Orders -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body text-center">
+            <h5 class="card-title text-muted">{{ 'Dashboard.totalOrders' | translate }}</h5>
+            <p class="display-5 text-info fw-bold">{{ totalOrders }}</p>
           </div>
         </div>
-  
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Warehouse Alerts</h5>
-              <ul>
-                <li>Warehouse A - Low stock</li>
-                <li>Warehouse B - Temperature alert</li>
-              </ul>
-            </div>
+      </div>
+
+      <!-- Orders by Status -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted">{{ 'Dashboard.orderStatus' | translate }}</h5>
+            <ul class="list-unstyled ps-2" style="list-style-type: none;">
+              <li class="text-secondary">{{ 'Dashboard.pending' | translate }}: <strong>{{ ordersPending }}</strong></li>
+              <li class="text-secondary">{{ 'Dashboard.delivered' | translate }}: <strong>{{ ordersDelivered }}</strong></li>
+              <li class="text-secondary">{{ 'Dashboard.cancelled' | translate }}: <strong>{{ ordersCancelled }}</strong></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  
-    <!-- Employee View -->
-    <div class="mb-5">
-      <h3>Employee Dashboard</h3>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Recent Orders</h5>
-              <ul>
-                <li>Order #1234 - Dispatched</li>
-                <li>Order #1235 - In Progress</li>
-              </ul>
-            </div>
+  </div>
+
+  <!-- Product Metrics Section -->
+  <div class="mb-5">
+    <h3 class="text-secondary">{{ 'Dashboard.productMetrics' | translate }}</h3>
+    <div class="row g-4">
+      <!-- Total Products -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body text-center">
+            <h5 class="card-title text-muted">{{ 'Dashboard.totalProducts' | translate }}</h5>
+            <p class="display-5 text-warning fw-bold">{{ totalProducts }}</p>
           </div>
         </div>
-  
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Products in Stock</h5>
-              <p class="display-4 text-success">300</p>
+      </div>
+
+      <!-- Low Stock Products -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted">{{ 'Dashboard.lowStockProducts' | translate }}</h5>
+            <ul class="list-unstyled ps-2" style="list-style-type: none;">
+              <li *ngFor="let product of lowProducts" class="text-secondary">{{ product.name }} ({{ product.stock }})</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Warehouse Overview Section -->
+  <div class="mb-5">
+    <h3 class="text-secondary">{{ 'Dashboard.warehouseOverview' | translate }}</h3>
+    <div class="row g-4">
+      <!-- Total Warehouses -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body text-center">
+            <h5 class="card-title text-muted">{{ 'Dashboard.totalWarehouses' | translate }}</h5>
+            <p class="display-5 text-primary fw-bold">{{ totalWarehouses }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warehouse Capacity Utilization (Grid Layout for warehouses) -->
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-muted mb-3">{{ 'Dashboard.warehouseCapacity' | translate }}</h5>
+            <div class="row row-cols-2 row-cols-md-4 g-4">
+              <div *ngFor="let warehouse of warehouses" class="col">
+                <div class="card shadow-sm border-0">
+                  <div class="card-body">
+                    <h6 class="card-title"> {{ warehouse.location }}</h6>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="warehouse.capacityUsage">
+                        {{ warehouse.capacityUsage }}%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

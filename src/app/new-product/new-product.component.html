@@ -1,114 +1,105 @@
 <section class="min-vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-      <div class="row justify-content-center align-items-center h-100">
-        <div class="col-12 col-lg-9 col-xl-7">
-          <div class="card shadow-lg border-0" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">Product Registration Form</h3>
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">Product Update Form</h3>
-              <form [formGroup]="form"> 
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-lg border-0" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">{{ 'ProductForm.registrationTitle' | translate }}</h3>
+            <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">{{ 'ProductForm.updateTitle' | translate }}</h3>
+            <form [formGroup]="form">
   
-                <!-- Product Name and Price -->
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                      <label class="form-label">Product Name</label>
-                      <input type="text" class="form-control form-control-lg" formControlName="txtName" [ngClass]="{'is-invalid':form.controls['txtName'].touched&&form.hasError('required','txtName') }" required/>
-                      <div class="invalid-feedback" *ngIf="form.controls['txtName'].touched&&form.hasError('required','txtName') ">
-                        Please enter a Product Name.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                      <label class="form-label">Price</label>
-                      <input type="number" step="0.01" class="form-control form-control-lg" formControlName="txtPrice" [ngClass]="{'is-invalid':form.controls['txtPrice'].touched&&form.hasError('required','txtPrice') }" required/>
-                      <div class="invalid-feedback" *ngIf="form.controls['txtPrice'].touched&&form.hasError('required','txtPrice') ">
-                        Please enter a valid Price.
-                      </div>
+              <!-- Product Name and Price -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'ProductForm.productName' | translate }}</label>
+                    <input type="text" class="form-control form-control-lg" formControlName="txtName" [ngClass]="{'is-invalid':form.controls['txtName'].touched && form.hasError('required','txtName')}" required/>
+                    <div class="invalid-feedback" *ngIf="form.controls['txtName'].touched && form.hasError('required','txtName')">
+                      {{ 'ProductForm.invalidProductName' | translate }}
                     </div>
                   </div>
                 </div>
-  
-                <!-- SKU and Stock -->
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                      <label class="form-label">SKU</label>
-                      <input type="text" class="form-control form-control-lg" formControlName="txtSKU"  [ngClass]="{'is-invalid':form.controls['txtSKU'].touched&&form.hasError('required','txtSKU') }" required/>
-                      <div class="invalid-feedback" *ngIf="form.controls['txtSKU'].touched&&form.hasError('required','txtSKU') ">
-                        Please enter a SKU.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                      <label class="form-label">Stock</label>
-                      <input type="number" class="form-control form-control-lg" formControlName="txtStock"  [ngClass]="{'is-invalid':form.controls['txtStock'].touched&&form.hasError('required','txtStock') }" required/>
-                      <div class="invalid-feedback" *ngIf="form.controls['txtStock'].touched&&form.hasError('required','txtStock') ">
-                        Please enter a Stock quantity.
-                      </div>
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'ProductForm.price' | translate }}</label>
+                    <input type="number" step="0.01" class="form-control form-control-lg" formControlName="txtPrice" [ngClass]="{'is-invalid':form.controls['txtPrice'].touched && form.hasError('required','txtPrice')}" required/>
+                    <div class="invalid-feedback" *ngIf="form.controls['txtPrice'].touched && form.hasError('required','txtPrice')">
+                      {{ 'ProductForm.invalidPrice' | translate }}
                     </div>
                   </div>
                 </div>
+              </div>
   
-                <!-- Description -->
-          
+              <!-- SKU and Stock -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'ProductForm.sku' | translate }}</label>
+                    <input type="text" class="form-control form-control-lg" formControlName="txtSKU" [ngClass]="{'is-invalid':form.controls['txtSKU'].touched && form.hasError('required','txtSKU')}" required/>
+                    <div class="invalid-feedback" *ngIf="form.controls['txtSKU'].touched && form.hasError('required','txtSKU')">
+                      {{ 'ProductForm.invalidSKU' | translate }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'ProductForm.stock' | translate }}</label>
+                    <input type="number" class="form-control form-control-lg" formControlName="txtStock" [ngClass]="{'is-invalid':form.controls['txtStock'].touched && form.hasError('required','txtStock')}" required/>
+                    <div class="invalid-feedback" *ngIf="form.controls['txtStock'].touched && form.hasError('required','txtStock')">
+                      {{ 'ProductForm.invalidStock' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
   
-                <!-- Image URL and Warehouse ID -->
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                      <div class="col-3">
-                     
+              <!-- Image Upload and Description -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <div class="col-3">
                       <input formControlName="fileImage" style="display: none;" id="imgUpload" type="file" class="form-control form-control-lg" (change)="onFileSelect($event)"/>
-                      </div>
-                      <div class="image-placeholder" *ngIf="!imgUrl">
+                    </div>
+                    <div class="image-placeholder" *ngIf="!imgUrl">
+                      <i class="fa-solid fa-image" style="color: #bfbfbf; padding: 5px; font-size: 3rem;"></i>
+                      <label for="imgUpload">
+                        <p class="upload-text">{{ 'ProductForm.image' | translate }}</p>
+                      </label>
+                      <input type="file" id="imgUpload" style="display: none">
+                    </div>
+                    <div class="col-3 d-flex flex-nowrap" *ngIf="imgUrl">
+                      <img [src]="imgUrl" class="img-circle img-fluid product-image" alt="">
+                      <label for="imgUpload" class="btn btn-light d-flex justify-content-center align-items-center">
                         <i class="fa-solid fa-image" style="color: #bfbfbf; padding: 5px; font-size: 3rem;"></i>
-                        <label for="imgUpload">
-                          <p class="upload-text">Upload Image</p>
-                        </label>
-                        <input type="file" id="imgUpload" style="display: none">
-                      </div>
-                      
-                      <div class="col-3 d-flex flex-nowrap" *ngIf="imgUrl">
-                        <img [src]="imgUrl" class="img-circle img-fluid product-image" alt="">
-                        <label for="imgUpload" class="btn btn-light d-flex justify-content-center align-items-center">
-                          <i class="fa-solid fa-image" style="color: #bfbfbf; padding: 5px; font-size: 3rem;"></i>
-                        </label>
-                      </div>
+                      </label>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    
-                    <div class="col-12">
-                      <div class="form-outline">
-                        <label class="form-label">Description</label>
-                        <textarea formControlName="txtDescription" class="form-control form-control-lg"  rows="4"></textarea>
-                      </div>
-                    </div>
-                        
-                        <select hidden  formControlName="selectWarehouse">
-                          <option [value]="warehouses[0].warehouseId">{{ warehouses[0].location }}</option>
-                      </select>
-                     
-                    
                   </div>
                 </div>
-                
-                <input hidden formControlName="txtId" *ngIf="isEdit">
+                <div class="col-md-6">
+                  <div class="col-12">
+                    <div class="form-outline">
+                      <label class="form-label">{{ 'ProductForm.description' | translate }}</label>
+                      <textarea formControlName="txtDescription" class="form-control form-control-lg" rows="4"></textarea>
+                    </div>
+                  </div>
+                  <select hidden formControlName="selectWarehouse">
+                    <option [value]="warehouses[0].warehouseId">{{ warehouses[0].location }}</option>
+                  </select>
+                </div>
+              </div>
 
-                <!-- Submit Button -->
-                <div class="text-center mt-3 pt-2">
-                  <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="Submit" (click)="submit()"/>
-                  <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="Update" (click)="update()"/>
-                </div>
-  
-              </form>
-            </div>
+              <!-- Hidden Product ID Field for Editing -->
+              <input hidden formControlName="txtId" *ngIf="isEdit">
+
+              <!-- Submit Button -->
+              <div class="text-center mt-3 pt-2">
+                <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="{{ 'ProductForm.submit' | translate }}" (click)="submit()"/>
+                <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="{{ 'ProductForm.update' | translate }}" (click)="update()"/>
+              </div>
+
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

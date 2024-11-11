@@ -1,79 +1,80 @@
 <section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-      <div class="row justify-content-center align-items-center h-100">
-        <div class="col-12 col-lg-9 col-xl-7">
-          <div class="card shadow-lg border-0" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">Warehouse Registration Form</h3>
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">Warehouse Update Form</h3>
-              <form [formGroup]="form">
-  
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                        <label class="form-label">Location</label>
-                      <input type="text" class="form-control form-control-lg" formControlName="txtLocation" [ngClass]="{'is-invalid':form.controls['txtLocation'].touched&&form.hasError('required','txtLocation') }"/>
-                     
-                      <div class="invalid-feedback"  *ngIf="form.controls['txtLocation'].touched&&form.hasError('required','txtLocation') ">
-                        Please Enter a Location.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-outline">
-                        <label class="form-label">Manager</label>
-                      <input type="text" class="form-control form-control-lg" formControlName="txtManager" [ngClass]="{'is-invalid':form.controls['txtManager'].touched&&form.hasError('required','txtManager') }"/>
-                      
-                      <div class="invalid-feedback" *ngIf="form.controls['txtManager'].touched&&form.hasError('required','txtManager') ">
-                        Please Enter a Manager Name.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="row mb-3">
-                  <div class="col-md-12">
-                    <div class="form-outline">
-                        <label class="form-label">Maximum Capacity</label>
-                      <input type="number" class="form-control form-control-lg" formControlName="txtCapacity" [ngClass]="{'is-invalid':form.controls['txtCapacity'].touched&&form.hasError('required','txtCapacity') }"/>
-                      
-                      <div class="invalid-feedback" *ngIf="form.controls['txtCapacity'].touched&&form.hasError('required','txtCapacity') ">
-                        Please enter a Capacity.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="row mb-3">
-                  <div class="col-12">
-                    <div class="form-outline">
-                        <label class="form-label">Status</label>
-                      <select class="form-select form-control-lg" formControlName="txtStatus" [ngClass]="{'is-invalid':form.controls['txtStatus'].touched&&form.hasError('required','txtStatus') }">
-                        <option selected disabled>Choose an Option</option>
-                        <option value="true">Active</option>
-                        <option value="false">Inactive</option>
-                      </select>
-                      <div class="invalid-feedback" *ngIf="form.controls['txtStatus'].touched&&form.hasError('required','txtStatus') ">
-                        Please Choose a Status.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="position-relative w-10">
-                  <input hidden formControlName="txtId" class="position-absolute search-icon" *ngIf="isEdit">
-                </div>
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-lg border-0" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">{{ 'WarehouseForm.registrationTitle' | translate }}</h3>
+            <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">{{ 'WarehouseForm.updateTitle' | translate }}</h3>
+            <form [formGroup]="form">
 
-                <div class="text-center mt-5 pt-2 ">
-                  <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="Submit" (click)="submit()"/>
-                  <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="Update" (click)="Update()" />
+              <!-- Location and Manager -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'WarehouseForm.location' | translate }}</label>
+                    <input type="text" class="form-control form-control-lg" formControlName="txtLocation" [ngClass]="{'is-invalid': form.controls['txtLocation'].touched && form.hasError('required', 'txtLocation')}" />
+                    <div class="invalid-feedback" *ngIf="form.controls['txtLocation'].touched && form.hasError('required', 'txtLocation')">
+                      {{ 'WarehouseForm.invalidLocation' | translate }}
+                    </div>
+                  </div>
                 </div>
-  
-              </form>
-            </div>
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'WarehouseForm.manager' | translate }}</label>
+                    <input type="text" class="form-control form-control-lg" formControlName="txtManager" [ngClass]="{'is-invalid': form.controls['txtManager'].touched && form.hasError('required', 'txtManager')}" />
+                    <div class="invalid-feedback" *ngIf="form.controls['txtManager'].touched && form.hasError('required', 'txtManager')">
+                      {{ 'WarehouseForm.invalidManager' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Capacity -->
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'WarehouseForm.capacity' | translate }}</label>
+                    <input type="number" class="form-control form-control-lg" formControlName="txtCapacity" [ngClass]="{'is-invalid': form.controls['txtCapacity'].touched && form.hasError('required', 'txtCapacity')}" />
+                    <div class="invalid-feedback" *ngIf="form.controls['txtCapacity'].touched && form.hasError('required', 'txtCapacity')">
+                      {{ 'WarehouseForm.invalidCapacity' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Status -->
+              <div class="row mb-3">
+                <div class="col-12">
+                  <div class="form-outline">
+                    <label class="form-label">{{ 'WarehouseForm.status' | translate }}</label>
+                    <select class="form-select form-control-lg" formControlName="txtStatus" [ngClass]="{'is-invalid': form.controls['txtStatus'].touched && form.hasError('required', 'txtStatus')}" >
+                      <option selected disabled>{{ 'WarehouseForm.chooseOption' | translate }}</option>
+                      <option value="true">{{ 'WarehouseForm.active' | translate }}</option>
+                      <option value="false">{{ 'WarehouseForm.inactive' | translate }}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="form.controls['txtStatus'].touched && form.hasError('required', 'txtStatus')">
+                      {{ 'WarehouseForm.invalidStatus' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hidden Input for ID -->
+              <div class="position-relative w-10">
+                <input hidden formControlName="txtId" class="position-absolute search-icon" *ngIf="isEdit">
+              </div>
+
+              <!-- Submit Button -->
+              <div class="text-center mt-5 pt-2">
+                <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="{{ 'WarehouseForm.submit' | translate }}" (click)="submit()" />
+                <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="{{ 'WarehouseForm.update' | translate }}" (click)="Update()" />
+              </div>
+
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

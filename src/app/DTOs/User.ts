@@ -6,6 +6,7 @@ export class User {
     email!: string
     roles!: any
     name!: string
+    image?: string
     warehouseId?: number
     warehouse?: Warehouse
 }

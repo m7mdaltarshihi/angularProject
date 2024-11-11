@@ -169,3 +169,12 @@ table tbody tr:hover {
     /* Highlight row on hover */
     cursor: pointer;
 }
+
+.target-danger {
+    color: #d9534f;
+    /* Subtle red */
+    font-weight: 600;
+    /* Light background for contrast */
+    padding: 4px 8px;
+    border-radius: 4px;
+}

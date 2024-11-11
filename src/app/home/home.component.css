@@ -288,3 +288,59 @@ li {
     color: #155724;
     /* Keeps text color dark */
 }
+
+/* General Styling */
+.container-div {
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    height: 150px;
+}
+
+/* Profile Info Styling */
+.container-div .d-flex {
+    align-items: center;
+}
+
+.container-div .rounded-circle {
+    border: 4px solid #f8f9fa;
+    /* Light border around the image */
+}
+
+/* Title & Description Styling */
+.container-div .text-dark {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.container-div .text-muted {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Button Styling */
+.container-div button {
+    transition: all 0.3s ease-in-out;
+}
+
+.container-div button:hover {
+    background-color: #004085;
+    border-color: #004085;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Icon */
+.container-div i {
+    font-size: 1.1rem;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .container-div {
+        padding: 2rem;
+    }
+
+    .container-div .ms-4 {
+        margin-left: 1rem;
+    }
+}

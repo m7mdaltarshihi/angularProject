@@ -4,23 +4,23 @@
         <div class="col-12 col-lg-9 col-xl-7">
           <div class="card shadow-lg border-0" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">Order Registration Form</h3>
-              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">Order Update Form</h3>
+              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="!isEdit">{{'OrderForm.registrationTitle' | translate}}</h3>
+              <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">{{'OrderForm.updateTitle' | translate}}</h3>
               <form [formGroup]="form">
                 <!-- Quantity and Payment Method -->
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <div class="form-outline">
-                        <label class="form-label">Customer Name</label>
+                        <label class="form-label">{{'OrderForm.customerName' | translate}}</label>
                         <input [ngClass]="{'is-invalid':form.controls['txtCustomerName'].touched&&form.hasError('required','txtCustomerName')  }" type="text" class="form-control form-control-lg" formControlName="txtCustomerName" required/>
                         <div class="invalid-feedback" *ngIf="form.controls['txtCustomerName'].touched&&form.hasError('required','txtCustomerName')">
-                          Please enter the Customer Name.
+                          {{'OrderForm.invalidCustomerName' | translate}}
                         </div>
                       </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-outline">
-                      <label class="form-label">Payment Method</label>
+                      <label class="form-label">{{'OrderForm.paymentMethod' | translate}}</label>
                       <select [ngClass]="{'is-invalid':form.controls['selectPaymentMethod'].touched&&form.hasError('required','selectPaymentMethod')  }" class="form-select form-control-lg" formControlName="selectPaymentMethod" required>
                         <option value="Cash" selected>Cash</option>
                         <option value="Credit">Credit</option>
@@ -28,7 +28,7 @@
                         <option value="Paypal">Paypal</option>
                       </select>
                       <div *ngIf="form.controls['selectPaymentMethod'].touched&&form.hasError('required','selectPaymentMethod')" class="invalid-feedback">
-                        Please select a Payment Method.
+                        {{'OrderForm.invalidPaymentMethod' | translate}}
                       </div>
                     </div>
                   </div>
@@ -37,19 +37,19 @@
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <div class="form-outline">
-                      <label class="form-label">Shipping Address</label>
+                      <label class="form-label">{{'OrderForm.shippingAddress' | translate}}</label>
                       <input [ngClass]="{'is-invalid':form.controls['txtShippingAddress'].touched&&form.hasError('required','txtShippingAddress')  }" type="text" class="form-control form-control-lg" formControlName="txtShippingAddress" required/>
                       <div class="invalid-feedback" *ngIf="form.controls['txtShippingAddress'].touched&&form.hasError('required','txtShippingAddress') ">
-                        Please enter a Shipping Address.
+                        {{'OrderForm.invalidShippingAddress' | translate}}
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-outline">
-                        <label class="form-label">Quantity</label>
+                        <label class="form-label">{{'OrderForm.quantity' | translate}}</label>
                         <input [ngClass]="{'is-invalid':form.controls['txtQuantity'].touched&&form.hasError('required','txtQuantity')  }" type="number" class="form-control form-control-lg" formControlName="txtQuantity" required/>
                         <div class="invalid-feedback" *ngIf="form.controls['txtQuantity'].touched&&form.hasError('required','txtQuantity') ">
-                          Please enter a Quantity.
+                          {{'OrderForm.invalidQuantity' | translate}}
                         </div>
                       </div>
                   </div>
@@ -59,14 +59,14 @@
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <div class="form-outline">
-                      <label class="form-label">Status</label>
+                      <label class="form-label">{{'OrderForm.status' | translate}}</label>
                       <select [ngClass]="{'is-invalid':form.controls['selectStatus'].touched&&form.hasError('required','selectStatus')  }" class="form-select form-control-lg" formControlName="selectStatus" required>
                         <option value="Pending" selected>Pending</option>
                         <option value="Delivered">Delivered</option>
                         <option value="Cancelled">Cancelled</option>
                       </select>
                       <div class="invalid-feedback" *ngIf="form.controls['selectStatus'].touched&&form.hasError('required','selectStatus') ">
-                        Please select a Status.
+                        {{'OrderForm.invalidStatus' | translate}}
                       </div>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- modal-lg makes it wider -->
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="productModal">Select Products</h1>
+                              <h1 class="modal-title fs-5" id="productModal">{{'OrderForm.selectProduct' | translate}}</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
                             </div>
                             <div class="modal-body">
@@ -142,7 +142,7 @@
 
                       <div class="col-md-12 d-flex align-items-center">
                         <div class="row">
-                          <label class="form-label">Product</label>
+                          <label class="form-label">{{'OrderForm.product' | translate}}</label>
 
                           <div class="col-9">
                             <select
@@ -175,7 +175,7 @@
 
                           </div>
                           <div class="invalid-feedback col-2" *ngIf="form.controls['selectProduct'].touched && form.hasError('required', 'selectProduct')">
-                            Please select a Product.
+                            {{'OrderForm.invalidProduct' | translate}}
                           </div>
                         </div>
                         
@@ -189,11 +189,11 @@
                   <div class="col-md-6">
 
                     <div class="form-outline datepicker">
-                      <label for="dateInput" class="col-form-label col-2">Date</label>
+                      <label for="dateInput" class="col-form-label col-2">{{'OrderForm.date' | translate}}</label>
                       <input [ngClass]="{'is-invalid': form.controls['txtDate'].touched && form.hasError('required', 'txtDate') }" formControlName="txtDate" type="date" style="border-radius: 0.375rem;" class="form-control " placeholder="Select a date">
                     </div>
                     <div class="invalid-feedback" *ngIf="form.controls['txtDate'].touched&&form.hasError('required','txtDate') ">
-                      Please select a Status.
+                      {{'OrderForm.invalidDate' | translate}}
                     </div>
                   </div>
 

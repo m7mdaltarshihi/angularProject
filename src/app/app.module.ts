@@ -14,7 +14,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { NewProductComponent } from './new-product/new-product.component';
 import { WarehouselIstComponent } from './warehouse-list/warehousel-ist.component';
 import { NewWarehouseComponent } from './new-warehouse/new-warehouse.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { Error404Component } from './error404/error404.component';
@@ -22,6 +22,10 @@ import { Error401Component } from './error401/error401.component';
 import { authenticationGuard } from './guards/authentication.guard';
 import { ErrorHandlingInterceptor } from './interceptors/error-handling.interceptor';
 import { Error403Component } from './error403/error403.component';
+import { ProfileComponent } from './profile/profile.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateService } from "@ngx-translate/core";
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'error404', component: Error404Component },
@@ -39,6 +43,7 @@ const appRoutes: Routes = [
       { path: 'warehouseList', component: WarehouselIstComponent },
       { path: 'newWarehouse', component: NewWarehouseComponent },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'profile', component: ProfileComponent },
 
 
     ]
@@ -61,6 +66,7 @@ const appRoutes: Routes = [
     Error404Component,
     Error401Component,
     Error403Component,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +74,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HtppLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
 
   ],
   providers: [
@@ -76,4 +89,13 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private translate: TranslateService) {
+    translate.use('en')
+  }
+}
+export function HtppLoaderFactory(http: HttpClient): TranslateHttpLoader {
+
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+

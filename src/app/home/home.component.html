@@ -79,73 +79,101 @@
 </symbol>
 </svg>
 
-<main class="d-flex flex-nowrap h-100 min-vh-100">
+<main class="d-flex flex-nowrap ">
 
 
 
 
 
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary " style="width: 280px;">
-  <a routerLink="dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-    <i class="fa-brands fa-slack"></i>
-    <span class="fs-4"> Tracking system</span>
-  </a>
-  <hr class="hrStyle">
-    
-  <ul class="menu-container">
-    <!-- Dashboard Link -->
-    <li class="menu-item dashboard-item"> 
-      <a class="nav-link link-body-emphasis" routerLink="/home/dashboard" role="button" aria-expanded="false">
-        <i class="fa-solid fa-gauge icon"></i>
-        <span class="menu-title">Dashboard</span>
-      </a>
-    </li>
-  
-    <!-- Dynamic Menu Items -->
-    <li *ngFor="let li of filteredMenu" class="menu-item">
-      <div class="menu-header">
-        <svg class="icon" width="20" height="20">
-          <use [attr.xlink:href]="li.icon"/>
-        </svg>
-        <span class="menu-title">{{ li.text }}</span>
-      </div>
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary h-100 min-vh-100" style="width: 280px;">
+    <a routerLink="dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <i class="fa-brands fa-slack"></i>
+      <span class="fs-4">WMS</span>
+    </a>
+    <hr class="hrStyle">
       
-      <div class="menu-links d-flex justify-content-around">
-        <a [routerLink]="li.viewURL" class="nav-link view-link">View All</a>
-        <a [routerLink]="li.addURL" class="nav-link add-link">Add</a>
-      </div>
-    </li>
+    <ul class="menu-container">
+      <!-- Dashboard Link -->
+      <li class="menu-item dashboard-item"> 
+        <a class="nav-link link-body-emphasis" routerLink="/home/dashboard" role="button" aria-expanded="false">
+          <i class="fa-solid fa-gauge icon"></i>
+          <span class="menu-title">{{ 'Menu.dashboard' | translate }}</span>
+        </a>
+      </li>
+    
+      <!-- Dynamic Menu Items -->
+      <li *ngFor="let li of filteredMenu" class="menu-item">
+        <div class="menu-header">
+          <svg class="icon" width="20" height="20">
+            <use [attr.xlink:href]="li.icon"/>
+          </svg>
+          <span class="menu-title">{{ li.text | translate }}</span>
+        </div>
+        
+        <div class="menu-links d-flex justify-content-around">
+          <a [routerLink]="li.viewURL" class="nav-link view-link">{{ 'Menu.viewAll' | translate }}</a>
+          <a [routerLink]="li.addURL" class="nav-link add-link">{{ 'Menu.add' | translate }}</a>
+        </div>
+      </li>
+    
+      <!-- Logout Link -->
+      <li class="menu-item logout-item"> 
+        <a class="nav-link link-body-emphasis" (click)="Logout()" role="button" aria-expanded="false">
+          <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+          <span class="menu-title">{{ 'Menu.logout' | translate }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
   
-    <!-- Logout Link -->
-    <li class="menu-item logout-item"> 
-      <a class="nav-link link-body-emphasis" (click)="Logout()" role="button" aria-expanded="false">
-        <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
-        <span class="menu-title">Logout</span>
-      </a>
-    </li>
-  </ul>
-  
-  
-  
-
-
- 
-</div>
 
 
 
 
 
 <div class="container-fluid h-100 vh-100">
-  <div class="row h-100">
-    <div class="col-12 d-flex justify-content-center mt-4 ">
-        <div class="col-md-6  container-div">
-          <router-outlet></router-outlet>
+  <div class="row">
+    <!-- Sidebar or Header can go here if needed -->
+    <div class="col-12 d-flex justify-content-center mt-4">
+      <div class="col-md-6 container-div shadow-lg p-4 rounded-3 bg-white">
+        <!-- User Info Navbar -->
+        <div class="d-flex justify-content-between align-items-center border-bottom p-3 bg-light rounded-3">
+          <!-- Profile Info (Left side) -->
+          <div class="d-flex align-items-center">
+            <!-- Profile Image -->
+            <img [src]="user.image" alt="User Image" class="rounded-circle border border-3 border-primary" width="70" height="70">
+            <div class="ms-4">
+              <h5 class="mb-0 text-dark">{{user.name}}</h5>
+              <p class="text-muted mb-0">{{user.roles}}</p>
+            </div>
+          </div>
+          
+          <!-- View Profile Button (moved to the left) -->
+          <div class="d-flex">
+            <button class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center me-3" routerLink="/home/profile">
+              <i class="bi bi-person-fill me-2"></i> {{'Home.viewProfile' | translate}}
+            </button>
+            <!-- Language Selection Dropdown (right side) -->
+            <div >
+            
+              <select class="form-select " (change)="changeLanguage()" #language>
+                <option selected disabled>{{'Login.language' | translate}}</option>
+                <option value="en">{{'Login.english' | translate}}</option>
+                <option value="ar">{{'Login.arabic' | translate}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
-      
     </div>
+
+    <!-- Main Content (Router Outlet) -->
+    <router-outlet></router-outlet>
   </div>
 </div>
+
+  
+
 
 
 

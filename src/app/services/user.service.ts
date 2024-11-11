@@ -6,6 +6,7 @@ import { User } from '../DTOs/User';
 import { AssignRole } from '../DTOs/AssignRole';
 import { SignIn } from '../DTOs/SignIn';
 import { environment } from 'src/environments/environment.development';
+import { ChangePassword } from '../DTOs/ChangePassword';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +74,8 @@ export class UserService {
   SearchByUserName(userName: string): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/SearchByUserName?userName=${userName}`)
+  }
+  ChangePassword(changePassword: ChangePassword): Observable<any> {
+    return this.client.put(`${this.baseUrl}/api/Users/ChangePassword`, changePassword)
   }
 }

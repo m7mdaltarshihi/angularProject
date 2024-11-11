@@ -1,0 +1,136 @@
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-12 col-md-10 mx-auto">
+      <!-- Profile Card -->
+      <div class="card shadow-lg rounded-3 bg-white">
+        <div class="card-body p-4">
+          <!-- Profile Header (Horizontal Layout) -->
+          <div class="d-flex flex-column flex-md-row align-items-center mb-4">
+            <!-- Left Section: Profile Image and User Info -->
+            <div class="d-flex align-items-center mb-3 mb-md-0 me-md-4">
+              <img [src]="user.image" alt="User Image" class="rounded-circle border border-3 border-primary" width="100" height="100">
+              <div class="ms-4">
+                <h4 class="mb-0 text-dark">{{ user.name }}</h4>
+                <p class="text-muted mb-0">{{ 'ProfilePage.webDeveloper' | translate }}</p>
+              </div>
+            </div>
+
+            <!-- Right Section: Edit Profile Button -->
+            <div class="ms-md-auto">
+              <button class="btn btn-primary rounded-pill px-4 py-2 shadow-sm" (click)="EditProfile()">
+                <i class="bi bi-pencil-fill me-2"></i> {{ 'ProfilePage.editProfile' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Profile Information Form (Horizontal Layout) -->
+          <form [formGroup]="form">
+            <h5 class="mb-4 text-secondary">{{ 'ProfilePage.profileInformation' | translate }}</h5>
+            <div class="text-center mb-4">
+              <!-- Show the upload button only when in edit mode -->
+              <div *ngIf="isEdit && !imgUrl && !user.image" class="profile-pic-container image-placeholder position-relative d-inline-block">
+                <label for="imgUpload">
+                  <i class="fa-solid fa-image" style="color: #bfbfbf; font-size: 3rem;"></i>
+                  <p class="upload-text">{{ 'ProfilePage.uploadImage' | translate }}</p>
+                  <input 
+                    formControlName="fileImage" 
+                    type="file" 
+                    id="imgUpload" 
+                    (change)="onFileSelect($event)" 
+                    style="display: none">
+                </label>
+              </div>
+              <div *ngIf="isEdit && user.image && !imgUrl" class="profile-pic-container position-relative d-inline-block" 
+                      style="width: 100px; height: 100px;">
+                  <label for="imgUpload" 
+                          style="display: block; cursor: pointer; width: 100%; height: 100%; position: relative;">
+                      
+                      <!-- Display the User's Image -->
+                      <img [src]="user.image" alt="User Image" 
+                          class="rounded-circle border border-3 border-primary" 
+                          style="width: 100%; height: 100%;" />
+                      
+                      <!-- Full-size input overlay for file upload -->
+                      <input 
+                      formControlName="fileImage" 
+                      type="file" 
+                      id="imgUpload" 
+                      (change)="onFileSelect($event)" 
+                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" />
+                  </label>
+              </div>
+                
+              <div *ngIf="isEdit && imgUrl && !user.image" class="profile-pic-container position-relative d-inline-block" 
+              style="width: 100px; height: 100px;">
+                <label for="imgUpload" 
+                        style="display: block; cursor: pointer; width: 100%; height: 100%; position: relative;">
+                    
+                    <!-- Display the User's Image -->
+                    <img [src]="imgUrl" alt="User Image" 
+                        class="rounded-circle border border-3 border-primary" 
+                        style="width: 100%; height: 100%;" />
+                    
+                    <!-- Full-size input overlay for file upload -->
+                    <input 
+                    formControlName="fileImage" 
+                    type="file" 
+                    id="imgUpload" 
+                    (change)="onFileSelect($event)" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" />
+                </label>
+              </div>
+          
+            </div>
+
+            <div class="row mb-3">
+              <!-- Name -->
+              <div class="col-md-6">
+                <label for="name" class="form-label">{{ 'ProfilePage.fullName' | translate }}</label>
+                <input formControlName="txtName" type="text" class="form-control" id="name">
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6">
+                <label for="email" class="form-label">{{ 'ProfilePage.email' | translate }}</label>
+                <input formControlName="txtEmail" type="email" class="form-control" id="email">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="username" class="form-label">{{ 'ProfilePage.username' | translate }}</label>
+              <input formControlName="txtUserName" type="text" class="form-control" id="username"  >
+            </div>
+
+            <!-- Save Changes Button -->
+            <div class="d-flex justify-content-between mt-4" [ngClass]="{ 'd-none': !isEdit }">
+              <button type="submit" class="btn btn-success" (click)="Update()">{{ 'ProfilePage.saveChanges' | translate }}</button>
+              <button type="reset" class="btn btn-outline-secondary">{{ 'ProfilePage.cancel' | translate }}</button>
+            </div>
+          </form>
+
+          <!-- Change Password Section -->
+          <div class="mt-5">
+            <h5 class="mb-4 text-secondary">{{ 'ProfilePage.changePassword' | translate }}</h5>
+            <form [formGroup]="passwordForm">
+              <div class="row mb-3">
+                <!-- Current Password -->
+                <div class="col-md-6">
+                  <label for="currentPassword" class="form-label">{{ 'ProfilePage.currentPassword' | translate }}</label>
+                  <input formControlName="currentPassword" type="password" class="form-control" id="currentPassword" placeholder="{{ 'ProfilePage.enterCurrentPassword' | translate }}">
+                </div>
+
+                <!-- New Password -->
+                <div class="col-md-6">
+                  <label for="newPassword" class="form-label">{{ 'ProfilePage.newPassword' | translate }}</label>
+                  <input formControlName="newPassword" type="password" class="form-control" id="newPassword" placeholder="{{ 'ProfilePage.enterNewPassword' | translate }}">
+                </div>
+              </div>
+
+              <!-- Change Password Button -->
+              <button type="submit" class="btn btn-danger" (click)="ResetPassword()">{{ 'ProfilePage.changePasswordButton' | translate }}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

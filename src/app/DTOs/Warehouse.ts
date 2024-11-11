@@ -3,7 +3,9 @@ export class Warehouse {
     warehouseId!: number
     location!: string
     manager!: string
-    capacity!: number
+    maxCapacity!: number
+    currentCapacity!: number
+    capacityUsage!: number
     status!: boolean
 
 }

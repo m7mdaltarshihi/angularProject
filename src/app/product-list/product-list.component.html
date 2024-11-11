@@ -6,7 +6,7 @@
         <input #txtProductNameSearch 
                type="text" 
                class="form-control" 
-               placeholder="Search..." 
+               [placeholder]="'ProductPage.searchPlaceholder' | translate" 
                aria-label="Search"
                style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"/>
         <button class="btn btn-outline-secondary" (click)="Search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
@@ -17,150 +17,137 @@
     <div class="d-flex align-items-center">
       <button type="button" 
         (click)="ResetFilters()"  
-          class="btn btn-outline-info me-3 d-flex align-items-center" 
-          style="border-radius: 8px; color: #007bff; border-color: #007bff;">
-         <i class="fas fa-sync-alt me-1"></i> Reset Filters
+        class="btn btn-outline-info me-3 d-flex align-items-center" 
+        style="border-radius: 8px; color: #007bff; border-color: #007bff;">
+         <i class="fas fa-sync-alt me-1"></i> {{ 'ProductPage.resetFilters' | translate }}
         </button>
     </div>
+    
     <div class="d-flex align-items-center">
       <button type="button" 
               class="btn btn-outline-danger me-3 d-flex align-items-center position-relative" 
               (click)="BelowStockThreshhold()"
               style="border-radius: 8px;">
-              
         
         <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" 
               style="font-size: 0.75rem; padding: 0.3em 0.5em;">
           {{ count }}
         </span>
         
-        Products Low On Stock
+        {{ 'ProductPage.lowStockProducts' | translate }}
       </button>
     </div>
-    
 
     <!-- Right Section: Add Product Button -->
     <div>
-      
         <button type="button" 
                 routerLink="/home/newProduct" 
                 class="btn btn-primary" 
                 style="border-radius: 8px;">
-            + Add Product
+            {{ 'ProductPage.addProduct' | translate }}
         </button>
     </div>
-</div>
+  </div>
 
-    <div class="">
-    </div>
-    <!-- Table Section -->
-    <div class="table-responsive shadow rounded" style="background-color: #f8f9fa; padding: 20px;">
-      <table class="table align-middle table-hover mb-0">
-        <thead class="bg-light">
-          <tr>
-           
-            <th scope="col">#</th>
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">SKU</th>
-            <th scope="col">Stock <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="StockSort()"></i></th>
-            <th scope="col">Price <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="PriceSort()"></i></th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of products; let i = index">
-          
-            <td>{{ i + 1 }}</td> <!-- Counter starts from 1 -->
-            <td><img [src]="product.image" alt="{{ product.name }}" class="img-fluid product-image" *ngIf="product.image"></td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.sku }}</td>
-            <td>{{ product.stock }}</td>
-            <td>{{ product.price }}</td>
-            <td>
-              <div class="d-flex gap-3 icon-group">
-                <i class="fa-solid fa-info text-primary icon-btn" data-bs-toggle="modal" data-bs-target="#detailsModal"></i>
-                <i class="fa-solid fa-pen text-warning icon-btn" (click)="editProduct(product.productId)"></i>
-                <i class="fa-solid fa-trash text-danger icon-btn" (click)="deleteProduct(product.productId)"></i>
-              </div>
-            </td>
+  <div class="">
+  </div>
+  
+  <!-- Table Section -->
+  <div class="table-responsive shadow rounded" style="background-color: #f8f9fa; padding: 20px;">
+    <table class="table align-middle table-hover mb-0">
+      <thead class="bg-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">{{ 'ProductPage.productImage' | translate }}</th>
+          <th scope="col">{{ 'ProductPage.productName' | translate }}</th>
+          <th scope="col">{{ 'ProductPage.sku' | translate }}</th>
+          <th scope="col">{{ 'ProductPage.stock' | translate }} <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="StockSort()"></i></th>
+          <th scope="col">{{ 'ProductPage.price' | translate }} <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="PriceSort()"></i></th>
+          <th scope="col">{{ 'ProductPage.actions' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; let i = index">
+          <td>{{ i + 1 }}</td> <!-- Counter starts from 1 -->
+          <td><img [src]="product.image ? product.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtQK-vPXWRiGQdmA-tTZUsUhtqEyiOyE10Mg&s'" alt="{{ product.name }}" class="img-fluid product-image"></td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.sku }}</td>
+          <td [ngClass]="{'target-danger': product.stock <= 10}">{{ product.stock }}</td>
+          <td>{{ product.price }}</td>
+          <td>
+            <div class="d-flex gap-3 icon-group">
+              <i class="fa-solid fa-info text-primary icon-btn" (click)="loadById(product.productId)"></i>
+              <i class="fa-solid fa-pen text-warning icon-btn" (click)="editProduct(product.productId)"></i>
+              <i class="fa-solid fa-trash text-danger icon-btn" (click)="deleteProduct(product.productId)"></i>
+            </div>
+          </td>
 
-
-
-            <div id="detailsModal" class="modal fade" tabindex="-1" aria-labelledby="productDetailsModal" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="roleModalLabel">Product Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-
-                    <div class="col-lg-12 col-md-12 mb-12">
-                      <div class="card">
-                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                          data-mdb-ripple-color="light">
-                          <img [src]="product.image"
-                            class="w-100" />
-                          <a href="#!">
-                            <div class="mask">
-                              <div class="d-flex justify-content-start align-items-end h-100"></div>
-                            </div>
-                            <div class="hover-overlay">
-                              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                            </div>
-                          </a>
+          <!-- Product Modal -->
+          <div *ngIf="enable" id="detailsModal" class="modal fade" tabindex="-1" aria-labelledby="productDetailsModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" style="max-height: 90vh;">
+              <div class="modal-content">
+                
+                <!-- Modal Header -->
+                <div class="modal-header bg-dark text-white">
+                  <h5 class="modal-title" id="roleModalLabel">{{ 'ProductPage.productDetails' | translate }}</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <!-- Modal Body -->
+                <div class="modal-body">
+                  <div class="card mb-3 border-0 shadow-sm">
+                    
+                    <!-- Product Image with Limited Height -->
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light" style="height: auto; overflow: hidden;">
+                      <img [src]="productDetails?.image" class="card-img-top" alt="Product Image" style="height: auto; width: auto;" />
+                      <a href="#!" class="stretched-link"></a>
+                    </div>
+                    
+                    <div class="card-body">
+                      <!-- Product Name and SKU -->
+                      <div class="row mb-4 align-items-center">
+                        <div class="col-6">
+                          <h5 class="card-title mb-1 text-dark fw-bold" style="color: #5179ff !important;">{{ productDetails?.name }}</h5>
                         </div>
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-6">
-                              <span  class="text-reset">
-                                <h5 class="card-title mb-3">{{product.name}}</h5>
-                              </span>
-                            </div>
-                            <div class="col-6">
-                              <span class="text-reset">
-                                <h5>SKU: {{[product.sku]}}</h5>
-                              </span>
-                            </div>
-                          </div>
-                          <div class="row">
-                            
-                            <div class="col-12">
-                              <span class="text-reset">
-                                <h5>Description: </h5><p>{{product.description}}</p>
-                              </span>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-6">
-                              <h6 class="mb-3">Price: {{product.price | currency}}</h6>
-
-                            </div>
-                            <div class="col-6">
-                              <h6 class="mb-3">Available:  {{product.stock }}</h6>
-                            </div>
-                          </div>
+                        <div class="col-6 text-end">
+                          <h6 class="text-muted">{{ 'ProductPage.sku' | translate }}: <span class="text-secondary">{{ productDetails?.sku }}</span></h6>
+                        </div>
+                      </div>
+                    
+                      <!-- Description -->
+                      <div class="mb-4">
+                        <h6 class="text-dark fw-bold">{{ 'ProductPage.description' | translate }}:</h6>
+                        <p class="text-muted" style="line-height: 1.5; font-size: 1rem;">{{ productDetails?.description }}</p>
+                      </div>
+                    
+                      <!-- Price and Stock Information -->
+                      <div class="row">
+                        <div class="col-6">
+                          <h6 class="text-dark fw-bold">{{ 'ProductPage.productPrice' | translate }}</h6>
+                          <p class="text-dark fs-5">{{ productDetails?.price | currency }}</p>
+                        </div>
+                        <div class="col-6 text-end">
+                          <h6 class="text-dark fw-bold">{{ 'ProductPage.available' | translate }}:</h6>
+                          <p class="text-dark fs-5">{{ productDetails?.stock }}</p>
                         </div>
                       </div>
                     </div>
-
+                    
                   </div>
-                  <div class="modal-footer">
-                    <div class="d-flex justify-content-center gap-3">
-                      <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-outline-danger" (click)="deleteProduct(product.productId)" data-bs-dismiss="modal">Delete</button>
-                    </div>
-                  </div>
-                  
                 </div>
+                
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                  <div class="d-flex justify-content-center gap-3">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">{{ 'ProductPage.close' | translate }}</button>
+                  </div>
+                </div>
+                
               </div>
             </div>
-
-          </tr>          
-          <!-- Repeat rows as needed -->
-        </tbody>
-      </table>
-    </div>
+          </div>
+        </tr>          
+      </tbody>
+    </table>
   </div>
-  
+</div>

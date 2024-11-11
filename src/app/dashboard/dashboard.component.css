@@ -29,7 +29,7 @@ h3 {
 
 /* Card Title */
 .card-title {
-    font-size: 1.2em;
+    font-size: 1.4em !important;
     color: #007bff;
     font-weight: bold;
 }
@@ -37,7 +37,7 @@ h3 {
 /* Icons Styling */
 .card-title::before {
     content: '';
-    display: inline-block;
+    display: inline;
     width: 5px;
     height: 5px;
     border-radius: 50%;
@@ -47,7 +47,7 @@ h3 {
 
 /* Specific Element Styling */
 ul {
-    list-style: none;
+    list-style: none !important;
     padding: 0;
     color: #666;
 }
@@ -67,4 +67,20 @@ ul li::before {
 
 p {
     color: #666;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+h4 {
+    margin-top: 1rem;
+    border-bottom: 2px solid;
+    padding-bottom: 0.5rem;
 }
