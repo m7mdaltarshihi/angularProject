@@ -55,10 +55,10 @@ export class NewUserComponent implements OnInit {
 
   }
   editUser() {
-    debugger
+
     this.userService.loadById(this.userId).subscribe({
       next: data => {
-        debugger
+
         this.form.controls['txtUserName'].setValue(data.userName)
         this.form.controls['txtName'].setValue(data.name)
         this.form.controls['txtEmail'].setValue(data.email)
@@ -72,10 +72,21 @@ export class NewUserComponent implements OnInit {
     })
   }
   warehouseValidation() {
-    debugger
+
     this.form.get('selectRole')?.valueChanges.subscribe(value => {
-      if (value === 'Manager' || value === 'Admin') {
-        this.isDisplay = false
+
+      if (typeof value === 'string') {
+        if (value === 'Manager' || value === 'Admin') {
+          this.isDisplay = false
+        } else {
+          this.isDisplay = true
+        }
+      } else {
+        if (value[0] === 'Manager' || value[0] === 'Admin') {
+          this.isDisplay = false
+        } else {
+          this.isDisplay = true
+        }
       }
     });
   }
@@ -90,7 +101,7 @@ export class NewUserComponent implements OnInit {
   }
   getWarehouses() {
 
-    this.warehouseService.LoadAll().subscribe({
+    this.warehouseService.loadAll().subscribe({
       next: data => {
         this.warehouses = data
       }
@@ -101,7 +112,7 @@ export class NewUserComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      debugger
+
       var user = new AddUser();
       user.userName = this.form.value["txtUserName"]
       user.name = this.form.value["txtName"]
@@ -112,7 +123,7 @@ export class NewUserComponent implements OnInit {
 
 
 
-      this.userService.addUser(user).subscribe({
+      this.userService.insert(user).subscribe({
         next: data => {
           Swal.fire({
             title: "Saved Successfully",
@@ -121,7 +132,6 @@ export class NewUserComponent implements OnInit {
             confirmButtonText: "Add More Users",
             denyButtonText: `Done`
           }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               this.ngOnInit()
             } else if (result.isDenied) {
@@ -134,7 +144,7 @@ export class NewUserComponent implements OnInit {
   }
 
   update() {
-    debugger
+
     this.form.get('txtPassword')?.disable();
     if (this.form.valid) {
 
@@ -143,9 +153,16 @@ export class NewUserComponent implements OnInit {
       user.userName = this.form.value["txtUserName"]
       user.name = this.form.value["txtName"]
       user.email = this.form.value["txtEmail"]
-      user.roles = (this.form.value["selectRole"])
+      user.roles = []
+      const checkType = this.form.value["selectRole"]
+      if (typeof checkType === 'string') {
+        user.roles.push(this.form.value["selectRole"])
+      } else {
+
+        user.roles.push(this.form.value["selectRole"][0])
+      }
+
       user.warehouseId = parseInt(this.form.value["selectWarehouse"])
-      // user.password = this.form.value["txtPassword"] // get form token later
       Swal.fire({
         title: "Do you want to save the changes?",
         showDenyButton: true,
@@ -153,9 +170,8 @@ export class NewUserComponent implements OnInit {
         confirmButtonText: "Save",
         denyButtonText: `Don't save`
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.userService.updateUser(user).subscribe({
+          this.userService.update(user).subscribe({
 
             next: data => {
               Swal.fire("Updated Successfuly!", "", "success");

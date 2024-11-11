@@ -8,7 +8,6 @@
             <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">{{ 'WarehouseForm.updateTitle' | translate }}</h3>
             <form [formGroup]="form">
 
-              <!-- Location and Manager -->
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-outline">
@@ -30,7 +29,6 @@
                 </div>
               </div>
 
-              <!-- Capacity -->
               <div class="row mb-3">
                 <div class="col-md-12">
                   <div class="form-outline">
@@ -43,7 +41,6 @@
                 </div>
               </div>
 
-              <!-- Status -->
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-outline">
@@ -60,12 +57,10 @@
                 </div>
               </div>
 
-              <!-- Hidden Input for ID -->
               <div class="position-relative w-10">
                 <input hidden formControlName="txtId" class="position-absolute search-icon" *ngIf="isEdit">
               </div>
 
-              <!-- Submit Button -->
               <div class="text-center mt-5 pt-2">
                 <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="{{ 'WarehouseForm.submit' | translate }}" (click)="submit()" />
                 <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="{{ 'WarehouseForm.update' | translate }}" (click)="Update()" />

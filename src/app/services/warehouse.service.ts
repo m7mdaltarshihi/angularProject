@@ -15,7 +15,7 @@ export class WarehouseService {
     this.baseUrl = environment.APIUrl
   }
 
-  LoadAll(): Observable<any> {
+  loadAll(): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Warehouse/LoadAll`)
   }
   loadAllById(warehouseId: number): Observable<any> {
@@ -26,28 +26,28 @@ export class WarehouseService {
     return this.client.post(`${this.baseUrl}/api/Warehouse`, warehouse)
   }
 
-  DeleteWarehouse(id: number): Observable<any> {
+  delete(id: number): Observable<any> {
 
     return this.client.delete(`${this.baseUrl}/api/Warehouse?id=${id}`)
   }
-  LoadById(id: number): Observable<any> {
+  loadById(id: number): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Warehouse/LoadById?id=${id}`)
   }
 
-  UpdateWarehouse(warehouse: Warehouse): Observable<any> {
+  update(warehouse: Warehouse): Observable<any> {
 
     return this.client.put(`${this.baseUrl}/api/Warehouse`, warehouse)
   }
-  FilterByStatus(stats: boolean): Observable<any> {
+  filterByStatus(stats: boolean): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Warehouse/FilterByStatus?isActive=${stats}`)
   }
-  SortByCapacity(isDecending: boolean): Observable<any> {
+  sortByCapacity(isDecending: boolean): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Warehouse/SortByCapacity?isDecending=${isDecending}`)
   }
-  SearchByLocation(location: string): Observable<any> {
+  searchByLocation(location: string): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Warehouse/SearchByLocation?location=${location}`)
   }

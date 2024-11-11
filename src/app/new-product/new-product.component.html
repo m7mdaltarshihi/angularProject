@@ -8,7 +8,6 @@
             <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">{{ 'ProductForm.updateTitle' | translate }}</h3>
             <form [formGroup]="form">
   
-              <!-- Product Name and Price -->
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-outline">
@@ -30,7 +29,6 @@
                 </div>
               </div>
   
-              <!-- SKU and Stock -->
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-outline">
@@ -52,7 +50,6 @@
                 </div>
               </div>
   
-              <!-- Image Upload and Description -->
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-outline">
@@ -87,10 +84,8 @@
                 </div>
               </div>
 
-              <!-- Hidden Product ID Field for Editing -->
               <input hidden formControlName="txtId" *ngIf="isEdit">
 
-              <!-- Submit Button -->
               <div class="text-center mt-3 pt-2">
                 <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="{{ 'ProductForm.submit' | translate }}" (click)="submit()"/>
                 <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="{{ 'ProductForm.update' | translate }}" (click)="update()"/>

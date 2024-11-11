@@ -1,26 +1,15 @@
 .gradient-custom {
     background:
         linear-gradient(rgba(66, 66, 66, 0.7),
-            /* Light white gradient */
-            rgba(0, 0, 0, 0.7)
-            /* Light white gradient */
-        ),
+            rgba(0, 0, 0, 0.7)),
         url('src/assets/WarehouseBG.jpg');
-    /* Background image */
     background-size: cover;
-    /* Cover the entire area */
     background-position: center;
-    /* Center the background image */
     background-repeat: no-repeat;
-    /* Prevent repetition of the image */
     height: 100vh;
-    /* Ensure it takes full viewport height */
     display: flex;
-    /* Use flexbox to center content */
     align-items: center;
-    /* Vertically center content */
     justify-content: center;
-    /* Horizontally center content */
 }
 
 .card-registration .select-input.form-control[readonly]:not([disabled]) {

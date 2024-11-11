@@ -44,26 +44,22 @@ export class NewOrderComponent implements OnInit {
 
   closeModal() {
 
-    // Initialize modal instance
     const modal = Modal.getInstance(this.productModal.nativeElement);
     if (modal) {
-      modal.hide(); // Hide the modal
+      modal.hide();
     }
 
-    // Ensure proper cleanup after hiding the modal
     this.removeModalBackdrop();
     this.restoreBodyState();
   }
 
   private removeModalBackdrop() {
-    // Remove all modal-backdrop elements (background dark shadow)
     document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
   }
 
   private restoreBodyState() {
-    // Remove 'modal-open' class from body and reset styles
     document.body.classList.remove('modal-open');
-    document.body.style.overflow = ''; // Reset body overflow style in case it's set to "hidden"
+    document.body.style.overflow = '';
   }
 
   formBuild() {
@@ -87,11 +83,8 @@ export class NewOrderComponent implements OnInit {
     if (info) {
       var parsedInfo = JSON.parse(info);
       var warehouseId = parsedInfo.warehouseId;
-      console.log(warehouseId);
-    } else {
-      console.log('No user info found in localStorage');
     }
-    this.productService.LoadAllById(warehouseId).subscribe({
+    this.productService.loadAllById(warehouseId).subscribe({
       next: data => {
         this.products = []
         data.forEach((element: any) => {
@@ -104,11 +97,11 @@ export class NewOrderComponent implements OnInit {
     })
   }
   GetSelectedProduct(productId: number) {
-    debugger
-    this.productService.LoadById(productId).subscribe({
+
+    this.productService.loadById(productId).subscribe({
       next: data => {
         if (data != undefined) {
-          debugger
+
           this.product = data
           this.form.controls["selectProduct"].setValue(productId);
           this.closeModal()
@@ -117,9 +110,8 @@ export class NewOrderComponent implements OnInit {
     })
   }
 
-  // formatDate(Date.now.toString(), 'yyyy-mm-dd', 'en')
   submit() {
-    debugger
+
     if (this.form.valid) {
       var order = new Order();
       order.quantity = parseInt(this.form.value["txtQuantity"])
@@ -131,7 +123,7 @@ export class NewOrderComponent implements OnInit {
       order.productid = this.product.productId
 
 
-      this.orderService.Insert(order).subscribe({
+      this.orderService.insert(order).subscribe({
         next: data => {
           Swal.fire({
             title: "Saved Successfully",
@@ -140,7 +132,6 @@ export class NewOrderComponent implements OnInit {
             confirmButtonText: "Add More Orders",
             denyButtonText: `Done`
           }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               this.ngOnInit()
             } else if (result.isDenied) {
@@ -154,15 +145,12 @@ export class NewOrderComponent implements OnInit {
 
   }
 
-  onClick() {
-    console.log("test")
-  }
 
   LoadFormData() {
-    debugger
-    this.orderService.LoadById(this.orderId).subscribe({
+
+    this.orderService.loadById(this.orderId).subscribe({
       next: data => {
-        debugger
+
         this.form.controls['txtId'].setValue(data.orderId)
         this.form.controls['txtQuantity'].setValue(data.quantity)
         this.form.controls['selectPaymentMethod'].setValue(data.paymentMethod)
@@ -177,7 +165,7 @@ export class NewOrderComponent implements OnInit {
     })
   }
   Update() {
-    debugger
+
     if (this.form.valid) {
       var order = new Order();
       order.orderId = parseInt(this.form.value["txtId"])
@@ -196,9 +184,8 @@ export class NewOrderComponent implements OnInit {
         confirmButtonText: "Save",
         denyButtonText: `Don't save`
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.orderService.Update(order).subscribe({
+          this.orderService.update(order).subscribe({
 
             next: data => {
               Swal.fire("Updated Successfuly!", "", "success");

@@ -21,11 +21,10 @@ export class ProfileComponent implements OnInit {
   isDisplay: boolean = true
 
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
-    debugger
+
     const storedUser = localStorage.getItem('UserInfo')
     if (storedUser) {
       this.user = JSON.parse(storedUser)
-      console.log(this.user)
 
     }
   }
@@ -37,7 +36,7 @@ export class ProfileComponent implements OnInit {
     this.fillData()
   }
   fillData() {
-    debugger
+
     this.form.controls['txtName'].setValue(this.user.name)
     this.form.controls['txtEmail'].setValue(this.user.email)
     this.form.controls['txtUserName'].setValue(this.user.userName)
@@ -61,13 +60,13 @@ export class ProfileComponent implements OnInit {
     })
   }
   ResetPassword() {
-    debugger
+
     if (this.passwordForm.value) {
       var changePassword = new ChangePassword()
       changePassword.userId = this.user.userId
       changePassword.currentPassword = this.passwordForm.controls['currentPassword'].value
       changePassword.newPassword = this.passwordForm.controls['newPassword'].value
-      this.userService.ChangePassword(changePassword).subscribe({
+      this.userService.changePassword(changePassword).subscribe({
         next: data => {
           Swal.fire({
             icon: "success",
@@ -82,21 +81,22 @@ export class ProfileComponent implements OnInit {
   EditProfile() {
 
     this.form.enable()
+    this.form.controls["txtUserName"].disable()
     this.isEdit = true
     this.isDisplay = false
   }
   onFileSelect(file: any) {
-    debugger
+
     let reader = new FileReader()
     reader.readAsDataURL(file.target.files[0])
     reader.onload = (_event) => {
-      debugger
+
       this.imgUrl = reader.result
     }
   }
 
   Update() {
-    debugger
+
     this.user.name = this.form.controls['txtName'].value
     this.user.email = this.form.controls['txtEmail'].value
     this.user.userName = this.form.controls['txtUserName'].value
@@ -113,9 +113,8 @@ export class ProfileComponent implements OnInit {
       confirmButtonText: "Save",
       denyButtonText: `Don't save`
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.userService.updateUser(this.user).subscribe({
+        this.userService.update(this.user).subscribe({
 
           next: data => {
             Swal.fire("Updated Successfuly!", "", "success");

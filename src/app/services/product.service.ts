@@ -15,49 +15,49 @@ export class ProductService {
     this.baseUrl = environment.APIUrl
   }
 
-  LoadAll(): Observable<any> {
+  loadAll(): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Product/GetAll`)
   }
-  LoadAllById(warehouseId: number): Observable<any> {
-    debugger
+  loadAllById(warehouseId: number): Observable<any> {
+
     return this.client.get(`${this.baseUrl}/api/Product/GetAllById?id=${warehouseId}`)
   }
 
-  Insert(product: Product): Observable<any> {
+  insert(product: Product): Observable<any> {
     return this.client.post(`${this.baseUrl}/api/Product`, product)
   }
 
-  Delete(id: number): Observable<any> {
+  delete(id: number): Observable<any> {
 
     return this.client.delete(`${this.baseUrl}/api/Product?id=${id}`)
   }
-  LoadById(id: number): Observable<any> {
+  loadById(id: number): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Product/LoadById?id=${id}`)
   }
-  Update(product: Product): Observable<any> {
+  update(product: Product): Observable<any> {
 
     return this.client.put(`${this.baseUrl}/api/Product`, product)
   }
-  StockSort(sort: boolean, warehouseId: number): Observable<any> {
+  stockSort(sort: boolean, warehouseId: number): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Product/StockSort?sort=${sort}&id=${warehouseId}`)
   }
-  PriceSort(sort: boolean, warehouseId: number): Observable<any> {
+  priceSort(sort: boolean, warehouseId: number): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Product/PriceSort?sort=${sort}&id=${warehouseId}`)
   }
-  WarehouseFilter(id: number): Observable<any> {
+  warehouseFilter(id: number): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Product/WarehouseFilter?id=${id}`)
   }
-  SearchByProduct(name: string, warehouseId: number): Observable<any> {
+  searchByProduct(name: string, warehouseId: number): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Product/SearchByProduct?productName=${name}&id=${warehouseId}`)
   }
   getProductsByStock(stock: number): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Product?stock=${stock}`);
   }
-  GetProductsLowOnStock(warehouseId: number): Observable<any> {
+  getProductsLowOnStock(warehouseId: number): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Product/StockLevels?warehouseId=${warehouseId}`);
   }
 }

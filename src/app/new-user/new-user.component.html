@@ -8,7 +8,6 @@
             <h3 class="text-center mb-4 pb-2 pb-md-0 mb-md-5 font-weight-bold" *ngIf="isEdit">{{ 'UserForm.updateTitle' | translate }}</h3>
             <form [formGroup]="form">
 
-              <!-- First Name and Last Name -->
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-outline">
@@ -31,7 +30,6 @@
                 </div>
               </div>
 
-              <!-- Email -->
               <div class="row mb-3">
                 <div [ngClass]="{'col-md-6': !isEdit, 'col-12': isEdit}">
                   <div class="form-outline">
@@ -54,12 +52,11 @@
                 </div>
               </div>
 
-              <!-- Role and Warehouse -->
               <div class="row mb-3">
                 <div class="col-6">
                   <div class="form-outline">
                     <label class="form-label">{{ 'UserForm.role' | translate }}</label>
-                    <select class="form-select form-control-lg" formControlName="selectRole" [ngClass]="{'is-invalid': form.controls['selectRole'].touched && form.controls['selectRole'].hasError('required')}">
+                    <select (change)="warehouseValidation()" class="form-select form-control-lg" formControlName="selectRole" [ngClass]="{'is-invalid': form.controls['selectRole'].touched && form.controls['selectRole'].hasError('required')}">
                       <option selected disabled>{{ 'UserForm.chooseRole' | translate }}</option>
                       <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
                     </select>
@@ -82,7 +79,6 @@
 
               <input hidden formControlName="txtId" *ngIf="isEdit">
 
-              <!-- Submit Button -->
               <div class="text-center mt-5 pt-2">
                 <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="!isEdit" type="submit" value="{{ 'UserForm.submit' | translate }}" (click)="submit()"/>
                 <input class="btn btn-md btn-outline-primary px-4 py-2 extra-styles" *ngIf="isEdit" type="submit" value="{{ 'UserForm.update' | translate }}" (click)="update()"/>

@@ -17,7 +17,6 @@
 
 
   
-  <!-- Custom styles for this template -->
 
 </head>
 <body>
@@ -38,11 +37,9 @@
   </svg>
 
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    <!-- Define the warehouse icon symbol -->
     
   </svg>
   
-  <!-- Use the warehouse icon symbol anywhere on the page -->
 
   
   
@@ -93,7 +90,6 @@
     <hr class="hrStyle">
       
     <ul class="menu-container">
-      <!-- Dashboard Link -->
       <li class="menu-item dashboard-item"> 
         <a class="nav-link link-body-emphasis" routerLink="/home/dashboard" role="button" aria-expanded="false">
           <i class="fa-solid fa-gauge icon"></i>
@@ -101,7 +97,6 @@
         </a>
       </li>
     
-      <!-- Dynamic Menu Items -->
       <li *ngFor="let li of filteredMenu" class="menu-item">
         <div class="menu-header">
           <svg class="icon" width="20" height="20">
@@ -116,7 +111,6 @@
         </div>
       </li>
     
-      <!-- Logout Link -->
       <li class="menu-item logout-item"> 
         <a class="nav-link link-body-emphasis" (click)="Logout()" role="button" aria-expanded="false">
           <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
@@ -133,14 +127,10 @@
 
 <div class="container-fluid h-100 vh-100">
   <div class="row">
-    <!-- Sidebar or Header can go here if needed -->
     <div class="col-12 d-flex justify-content-center mt-4">
       <div class="col-md-6 container-div shadow-lg p-4 rounded-3 bg-white">
-        <!-- User Info Navbar -->
         <div class="d-flex justify-content-between align-items-center border-bottom p-3 bg-light rounded-3">
-          <!-- Profile Info (Left side) -->
           <div class="d-flex align-items-center">
-            <!-- Profile Image -->
             <img [src]="user.image" alt="User Image" class="rounded-circle border border-3 border-primary" width="70" height="70">
             <div class="ms-4">
               <h5 class="mb-0 text-dark">{{user.name}}</h5>
@@ -148,12 +138,10 @@
             </div>
           </div>
           
-          <!-- View Profile Button (moved to the left) -->
           <div class="d-flex">
             <button class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center me-3" routerLink="/home/profile">
               <i class="bi bi-person-fill me-2"></i> {{'Home.viewProfile' | translate}}
             </button>
-            <!-- Language Selection Dropdown (right side) -->
             <div >
             
               <select class="form-select " (change)="changeLanguage()" #language>
@@ -167,7 +155,6 @@
       </div>
     </div>
 
-    <!-- Main Content (Router Outlet) -->
     <router-outlet></router-outlet>
   </div>
 </div>

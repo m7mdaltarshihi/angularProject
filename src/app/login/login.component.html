@@ -3,7 +3,6 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-white text-dark position-relative" style="border-radius: 1rem;">
-          <!-- Language Selection Dropdown positioned top-right -->
           <div class="position-absolute top-0 end-0 m-3">
             <select class="form-select form-select-sm" (change)="changeLanguage()" #language>
               <option selected disabled>{{'Login.language' | translate}}</option>
@@ -18,7 +17,6 @@
                 <h2 class="fw-bold mb-2 text-uppercase">{{'Login.login' | translate}}</h2>
                 <p class="text-dark mb-5">{{'Login.request' | translate}}</p>
 
-                <!-- Username Field -->
                 <div class="row mb-4">
                   <label class="col-3 col-form-label text-start text-dark fw-bold">{{'Login.username' | translate}}</label>
                   <div class="col-9">
@@ -42,7 +40,6 @@
                   </div>
                 </div>
 
-                <!-- Password Field -->
                 <div class="row mb-4">
                   <label class="col-3 col-form-label text-start text-dark fw-bold">{{'Login.password' | translate}}</label>
                   <div class="col-9">
@@ -66,7 +63,6 @@
                   </div>
                 </div>
 
-                <!-- Submit Button -->
                 <button class="btn btn-dark btn-lg px-5 mt-5" type="submit" (click)="login()">{{'Login.login' | translate}}</button>
               </div>
             </form>

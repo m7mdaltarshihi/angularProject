@@ -29,15 +29,15 @@ export class UserService {
     return this.client.get(`${this.baseUrl}/api/Users/GetAllRoles`)
 
   }
-  addUser(newUser: AddUser): Observable<any> {
-    debugger
+  insert(newUser: AddUser): Observable<any> {
+
     return this.client.post(`${this.baseUrl}/api/Users/AddUser`, newUser)
   }
-  SearchByName(name: string): Observable<any> {
+  searchByName(name: string): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/SearchByName?name=${name}`)
   }
-  deleteUser(id: string): Observable<any> {
+  delete(id: string): Observable<any> {
 
     return this.client.delete(`${this.baseUrl}/api/Users/DeleteUser?id=${id}`)
   }
@@ -47,35 +47,35 @@ export class UserService {
     return this.client.get(`${this.baseUrl}/api/Users/LoadById?UserId=${id}`)
   }
 
-  updateUser(user: User): Observable<any> {
-    debugger
+  update(user: User): Observable<any> {
+
     return this.client.put(`${this.baseUrl}/api/Users/UpdateUser`, user)
   }
-  SortByRole(roleName: string): Observable<any> {
+  sortByRole(roleName: string): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/SortByRole?name=${roleName}`)
   }
-  GetAllRoles(): Observable<any> {
+  getAllRoles(): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/GetAllRoles`)
   }
-  AssignRole(assignRoleDTO: AssignRole): Observable<any> {
-    debugger
+  assignRole(assignRoleDTO: AssignRole): Observable<any> {
+
     return this.client.post(`${this.baseUrl}/api/Users/AssignRole`, assignRoleDTO);
   }
-  Login(signIn: SignIn): Observable<any> {
-    debugger
+  login(signIn: SignIn): Observable<any> {
+
     return this.client.post(`${this.baseUrl}/api/Users/Login`, signIn)
   }
-  GetUserRoles(userName: string): Observable<any> {
+  getUserRoles(userName: string): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/GetUserRoles?userName=${userName}`)
   }
-  SearchByUserName(userName: string): Observable<any> {
+  searchByUserName(userName: string): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/SearchByUserName?userName=${userName}`)
   }
-  ChangePassword(changePassword: ChangePassword): Observable<any> {
+  changePassword(changePassword: ChangePassword): Observable<any> {
     return this.client.put(`${this.baseUrl}/api/Users/ChangePassword`, changePassword)
   }
 }

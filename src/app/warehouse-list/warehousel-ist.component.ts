@@ -21,7 +21,7 @@ export class WarehouselIstComponent implements OnInit {
   }
 
   loadAll() {
-    this.warehouseService.LoadAll().subscribe({
+    this.warehouseService.loadAll().subscribe({
 
       next: data => {
         this.warehouses = data
@@ -33,7 +33,7 @@ export class WarehouselIstComponent implements OnInit {
   }
 
   deleteWarehouse(warehouseId: number) {
-    debugger
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -44,7 +44,7 @@ export class WarehouselIstComponent implements OnInit {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.warehouseService.DeleteWarehouse(warehouseId).subscribe({
+        this.warehouseService.delete(warehouseId).subscribe({
           next: data => {
 
             Swal.fire({
@@ -63,15 +63,15 @@ export class WarehouselIstComponent implements OnInit {
     this.loadAll()
   }
   Search() {
-    debugger
+
     if (this.location.nativeElement.value === "") {
 
       this.loadAll()
     } else {
 
-      this.warehouseService.SearchByLocation(this.location.nativeElement.value).subscribe({
+      this.warehouseService.searchByLocation(this.location.nativeElement.value).subscribe({
         next: data => {
-          debugger
+
           this.warehouses = data
         }
       })
@@ -79,7 +79,7 @@ export class WarehouselIstComponent implements OnInit {
   }
   SortByCpacity() {
 
-    this.warehouseService.SortByCapacity(this.isDecending).subscribe({
+    this.warehouseService.sortByCapacity(this.isDecending).subscribe({
       next: data => {
         this.warehouses = data
       }
@@ -92,10 +92,10 @@ export class WarehouselIstComponent implements OnInit {
 
   }
   FilterByStatus(event: Event) {
-    debugger
+
     let status = (event.target as HTMLSelectElement).value
 
-    this.warehouseService.FilterByStatus(this.parseBoolean(status)).subscribe({
+    this.warehouseService.filterByStatus(this.parseBoolean(status)).subscribe({
       next: data => {
         this.warehouses = data
       }

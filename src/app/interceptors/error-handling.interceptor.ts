@@ -18,18 +18,18 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        debugger
+
         let msg = '';
         switch (error.status) {
           case 404:
             this.router.navigate(['/error404'])
             break;
           case 401:
-            debugger
+
             this.router.navigate(['/error401'])
             break;
           case 403:
-            this.router.navigate(['/error403']); // New case for 403
+            this.router.navigate(['/error403']);
             break;
           default:
             Swal.fire({

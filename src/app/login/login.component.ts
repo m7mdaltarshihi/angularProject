@@ -12,7 +12,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginComponent implements OnInit {
 
-  // username!:string
 
   form!: FormGroup
   @ViewChild('language') language!: ElementRef
@@ -48,7 +47,7 @@ export class LoginComponent implements OnInit {
     })
   }
   login() {
-    debugger
+
     if (this.form.valid) {
 
       var login = new SignIn();
@@ -56,18 +55,18 @@ export class LoginComponent implements OnInit {
       login.password = this.form.value["txtPassword"]
 
 
-      this.userService.Login(login).subscribe({
+      this.userService.login(login).subscribe({
         next: data => {
-          debugger
+
           localStorage.setItem('SecurityKey', data.tokenValue)
-          this.userService.GetUserRoles(this.form.value["txtUserName"]).subscribe({
+          this.userService.getUserRoles(this.form.value["txtUserName"]).subscribe({
             next: data => {
-              debugger
+
               localStorage.setItem('UserRoles', data)
-              this.userService.SearchByUserName(this.form.value["txtUserName"]).subscribe({
+              this.userService.searchByUserName(this.form.value["txtUserName"]).subscribe({
                 next: data => {
                   localStorage.setItem('UserInfo', JSON.stringify(data))
-                  debugger
+
                   this.router.navigate(['/home/dashboard'])
                 }
               })

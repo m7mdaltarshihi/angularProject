@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
     });
   }
   fetchProductData() {
-    this.productService.LoadAll().subscribe(products => {
+    this.productService.loadAll().subscribe(products => {
       this.totalProducts = products.length;
       products.forEach((element: any) => {
         if (element.stock <= 10) {
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
     });
   }
   fetchWarehouseData() {
-    this.warehouseService.LoadAll().subscribe(warehouses => {
+    this.warehouseService.loadAll().subscribe(warehouses => {
       this.totalWarehouses = warehouses.length;
       this.warehouses = warehouses.map((warehouse: any) => ({
         ...warehouse,

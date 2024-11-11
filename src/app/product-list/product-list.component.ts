@@ -24,52 +24,44 @@ export class ProductListComponent implements OnInit {
   @ViewChild('txtProductNameSearch') productName!: ElementRef
   constructor(private productService: ProductService, private router: Router, private warehouseService: WarehouseService) {
 
-    debugger
+
 
     var info = localStorage.getItem('UserInfo');
 
-    // Check if 'info' exists (i.e., not null) and then parse it
     if (info) {
-      var parsedInfo = JSON.parse(info); // Parse the string into an object
-      var warehouseId = parsedInfo.warehouseId; // Access the warehouseId
-      console.log(warehouseId); // Output the warehouseId
-    } else {
-      console.log('No user info found in localStorage');
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
     }
   }
 
   ngOnInit(): void {
-    debugger
+
     this.LoadAllById()
   }
 
   loadAll() {
-    this.productService.LoadAll().subscribe({
+    this.productService.loadAll().subscribe({
 
       next: data => {
-        debugger
+
         this.products = data
 
       }
     })
   }
   LoadAllById() {
-    debugger
+
     var info = localStorage.getItem('UserInfo');
 
-    // Check if 'info' exists (i.e., not null) and then parse it
     if (info) {
-      var parsedInfo = JSON.parse(info); // Parse the string into an object
-      var warehouseId = parsedInfo.warehouseId; // Access the warehouseId
-      console.log(warehouseId); // Output the warehouseId
-    } else {
-      console.log('No user info found in localStorage');
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
     }
 
-    this.productService.LoadAllById(warehouseId).subscribe({
+    this.productService.loadAllById(warehouseId).subscribe({
 
       next: data => {
-        debugger
+
         this.products = data
         data.forEach((element: any) => {
           if (element.stock <= 10) {
@@ -85,7 +77,7 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    debugger
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -96,7 +88,7 @@ export class ProductListComponent implements OnInit {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.productService.Delete(id).subscribe({
+        this.productService.delete(id).subscribe({
           next: data => {
             Swal.fire({
               title: "Deleted!",
@@ -114,19 +106,17 @@ export class ProductListComponent implements OnInit {
   }
 
   loadById(id: number) {
-    debugger
+
     this.enable = true
-    this.productService.LoadById(id).subscribe({
+    this.productService.loadById(id).subscribe({
       next: data => {
         this.productDetails = data
-        debugger
-        // Get modal element
+
         const modalElement = document.getElementById('detailsModal');
 
-        // Ensure modal element exists before trying to open
         if (modalElement) {
           const modal = new bootstrap.Modal(modalElement);
-          modal.show(); // Open the modal after loading the data
+          modal.show();
         } else {
           console.error('Modal element not found!');
         }
@@ -145,9 +135,6 @@ export class ProductListComponent implements OnInit {
     if (info) {
       var parsedInfo = JSON.parse(info);
       var warehouseId = parsedInfo.warehouseId;
-      console.log(warehouseId);
-    } else {
-      console.log('No user info found in localStorage');
     }
 
     if (this.productName.nativeElement.value === "") {
@@ -157,9 +144,9 @@ export class ProductListComponent implements OnInit {
 
 
 
-      this.productService.SearchByProduct(this.productName.nativeElement.value, warehouseId).subscribe({
+      this.productService.searchByProduct(this.productName.nativeElement.value, warehouseId).subscribe({
         next: data => {
-          debugger
+
           this.products = data
           this.count = data.length
         }
@@ -174,12 +161,8 @@ export class ProductListComponent implements OnInit {
     if (info) {
       var parsedInfo = JSON.parse(info);
       var warehouseId = parsedInfo.warehouseId;
-      console.log(warehouseId);
-    } else {
-      console.log('No user info found in localStorage');
     }
-
-    this.productService.StockSort(this.isDecending, warehouseId).subscribe({
+    this.productService.stockSort(this.isDecending, warehouseId).subscribe({
 
       next: data => {
         this.products = data
@@ -198,11 +181,8 @@ export class ProductListComponent implements OnInit {
     if (info) {
       var parsedInfo = JSON.parse(info);
       var warehouseId = parsedInfo.warehouseId;
-      console.log(warehouseId);
-    } else {
-      console.log('No user info found in localStorage');
     }
-    this.productService.PriceSort(this.isDecending, warehouseId).subscribe({
+    this.productService.priceSort(this.isDecending, warehouseId).subscribe({
 
       next: data => {
         this.products = data
@@ -217,20 +197,17 @@ export class ProductListComponent implements OnInit {
   }
 
   BelowStockThreshhold() {
-    debugger
+
     var info = localStorage.getItem('UserInfo');
 
     if (info) {
       var parsedInfo = JSON.parse(info);
       var warehouseId = parsedInfo.warehouseId;
-      console.log(warehouseId);
-    } else {
-      console.log('No user info found in localStorage');
     }
-    this.productService.GetProductsLowOnStock(warehouseId).subscribe({
+    this.productService.getProductsLowOnStock(warehouseId).subscribe({
 
       next: data => {
-        debugger
+
         this.products = data
       }
     })

@@ -37,10 +37,6 @@ export class UserListComponent implements OnInit {
   }
   saveRole() {
     if (this.roleForm.valid) {
-      console.log('Form data:', this.roleForm.value);
-      // Handle saving logic here
-    } else {
-      console.log('Form is not valid');
     }
   }
 
@@ -69,7 +65,7 @@ export class UserListComponent implements OnInit {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userService.deleteUser(id).subscribe({
+        this.userService.delete(id).subscribe({
           next: data => {
             Swal.fire({
               title: "Deleted!",
@@ -87,14 +83,14 @@ export class UserListComponent implements OnInit {
     this.loadAll()
   }
   Search() {
-    debugger
+
     if (this.name.nativeElement.value === "") {
 
       this.loadAll()
     } else {
-      this.userService.SearchByName(this.name.nativeElement.value).subscribe({
+      this.userService.searchByName(this.name.nativeElement.value).subscribe({
         next: data => {
-          debugger
+
           this.users = data
 
         }
@@ -102,26 +98,26 @@ export class UserListComponent implements OnInit {
     }
   }
   GetAllRoles() {
-    this.userService.GetAllRoles().subscribe({
+    this.userService.getAllRoles().subscribe({
       next: data => {
         this.roles = data
       }
     })
   }
   LoadData(userName: string) {
-    debugger
+
     this.roleForm.controls["txtName"].setValue(userName)
 
 
   }
   AssignRole() {
-    debugger
+
     var assignRoles = new AssignRole()
 
     assignRoles.userName = this.roleForm.controls["txtName"].value
     assignRoles.roleName = this.roleForm.controls["selectRole"].value
 
-    this.userService.AssignRole(assignRoles).subscribe({
+    this.userService.assignRole(assignRoles).subscribe({
       next: data => {
 
         Swal.fire({
@@ -137,7 +133,7 @@ export class UserListComponent implements OnInit {
   }
   SortByRole(event: Event) {
     const selectedRole = (event.target as HTMLSelectElement).value;
-    this.userService.SortByRole(selectedRole).subscribe({
+    this.userService.sortByRole(selectedRole).subscribe({
       next: data => {
         this.users = data;
       }

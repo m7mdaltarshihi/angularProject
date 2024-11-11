@@ -37,7 +37,6 @@ i {
     font-size: 15px;
 }
 
-/* Styling for the search icon inside the input */
 .search-icon {
     top: 50%;
     left: 10px;
@@ -45,7 +44,6 @@ i {
     color: #888;
 }
 
-/* Smaller select and button styling */
 .filter-select {
     padding: 6px 12px;
     font-size: 14px;
@@ -57,14 +55,11 @@ i {
     padding: 6px 14px;
 }
 
-/* Center positioning for filter */
 .filter-container {
     margin-left: auto;
     margin-right: 2rem;
-    /* Adjust to position slightly right of center */
 }
 
-/* Hover effects for action icons */
 .icon-group i {
     transition: color 0.3s, transform 0.3s;
     cursor: pointer;
@@ -113,12 +108,9 @@ div .col {
 
 .icon-btn:hover {
     color: #0056b3;
-    /* Change to any desired color */
     transform: scale(1.1);
-    /* Slightly enlarge the icon on hover */
 }
 
-/* Optional: Styling for table rows and cells for better readability */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -136,17 +128,14 @@ table td {
 
 table th {
     background-color: #f8f9fa;
-    /* Light background for headers */
     font-weight: bold;
 }
 
 table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
-    /* Zebra striping for even rows */
 }
 
 table tbody tr:hover {
     background-color: #f1f1f1;
-    /* Highlight row on hover */
     cursor: pointer;
 }

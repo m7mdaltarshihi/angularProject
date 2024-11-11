@@ -38,7 +38,7 @@ export class NewProductComponent implements OnInit {
   }
 
   buildForm() {
-    debugger
+
     this.form = this.formBuilder.group({
       txtName: ['', Validators.required],
       txtPrice: ['0', Validators.required],
@@ -52,8 +52,8 @@ export class NewProductComponent implements OnInit {
   }
 
   LoadData() {
-    debugger
-    this.productService.LoadById(this.productId).subscribe({
+
+    this.productService.loadById(this.productId).subscribe({
       next: data => {
         this.form.controls['txtName'].setValue(data.name)
         this.form.controls['txtPrice'].setValue(data.price)
@@ -68,26 +68,23 @@ export class NewProductComponent implements OnInit {
   }
 
   getWarehouses() {
-    debugger
+
     var info = localStorage.getItem('UserInfo');
     if (info) {
       var parsedInfo = JSON.parse(info);
       var warehouseId = parsedInfo.warehouseId;
-      this.productService.LoadAllById(warehouseId).subscribe({
+      this.productService.loadAllById(warehouseId).subscribe({
         next: data => {
-          debugger
-          console.log(data)
+
           this.warehouses = data
           this.form.controls["selectWarehouse"].setValue(data[0].warehouseId)
         }
       })
-    } else {
-      console.log('No user info found in localStorage');
     }
 
   }
   onFileSelect(file: any) {
-    debugger
+
     let reader = new FileReader()
     reader.readAsDataURL(file.target.files[0])
     reader.onload = (_event) => {
@@ -96,7 +93,7 @@ export class NewProductComponent implements OnInit {
   }
 
   submit() {
-    debugger
+
     if (this.form.valid) {
 
       var product = new Product();
@@ -108,7 +105,7 @@ export class NewProductComponent implements OnInit {
       product.image = this.imgUrl
       product.warehouseId = parseInt(this.form.value["selectWarehouse"])
 
-      this.productService.Insert(product).subscribe({
+      this.productService.insert(product).subscribe({
         next: data => {
           Swal.fire({
             title: "Saved Successfully",
@@ -117,7 +114,6 @@ export class NewProductComponent implements OnInit {
             confirmButtonText: "Add More Products",
             denyButtonText: `Done`
           }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               this.ngOnInit()
             } else if (result.isDenied) {
@@ -130,17 +126,13 @@ export class NewProductComponent implements OnInit {
   }
 
   update() {
-    debugger
+
     if (this.form.valid) {
 
 
 
       var product = new Product();
-      // const foundWarehouse = this.warehouse.find((e:Warehouse) => this.warehouse.warehouseId === parseInt(this.form.value["selectWarehouse"]));
-      // if (!foundWarehouse) {
-      //   // Handle the error: for example, throw an error or log it
-      //   throw new Error(`Warehouse with ID ${parseInt(this.form.value["selectWarehouse"])} not found.`);
-      // }
+
       product.productId = this.form.value["txtId"]
       product.name = this.form.value["txtName"]
       product.price = parseFloat(this.form.value["txtPrice"])
@@ -150,7 +142,6 @@ export class NewProductComponent implements OnInit {
       product.image = this.imgUrl
       product.warehouseId = parseInt(this.form.value["selectWarehouse"])
 
-      // product.warehouse = foundWarehouse
       Swal.fire({
         title: "Do you want to save the changes?",
         showDenyButton: true,
@@ -158,9 +149,8 @@ export class NewProductComponent implements OnInit {
         confirmButtonText: "Save",
         denyButtonText: `Don't save`
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.productService.Update(product).subscribe({
+          this.productService.update(product).subscribe({
 
             next: data => {
               Swal.fire("Updated Successfuly!", "", "success");

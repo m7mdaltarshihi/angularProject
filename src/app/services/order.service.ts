@@ -18,32 +18,32 @@ export class OrderService {
     return this.client.get(`${this.baseUrl}/api/Order/GetAll`)
   }
 
-  Insert(order: Order): Observable<any> {
+  insert(order: Order): Observable<any> {
     return this.client.post(`${this.baseUrl}/api/Order`, order)
 
   }
-  Delete(id: number): Observable<any> {
-    debugger
+  delete(id: number): Observable<any> {
+
     return this.client.delete(`${this.baseUrl}/api/Order?id=${id}`)
   }
-  LoadById(id: number): Observable<any> {
+  loadById(id: number): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Order/LoadById?id=${id}`)
   }
-  Update(order: Order): Observable<any> {
-    debugger
+  update(order: Order): Observable<any> {
+
     return this.client.put(`${this.baseUrl}/api/Order`, order)
 
   }
-  DateSort(isDecending: boolean): Observable<any> {
-    debugger
+  dateSort(isDecending: boolean): Observable<any> {
+
     return this.client.get(`${this.baseUrl}/api/Order/DateSort?sort=${isDecending}`)
   }
-  SearchByCustomer(customerName: string): Observable<any> {
-    debugger
+  searchByCustomer(customerName: string): Observable<any> {
+
     return this.client.get(`${this.baseUrl}/api/Order/SearchByCustomer?customerName=${customerName}`)
   }
-  SortByStatus(status: string): Observable<any> {
-    debugger
+  sortByStatus(status: string): Observable<any> {
+
     return this.client.get(`${this.baseUrl}/api/Order/SortByStatus?status=${status}`)
   }
 }

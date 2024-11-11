@@ -1,26 +1,15 @@
 .gradient-custom {
     background:
         linear-gradient(rgba(66, 66, 66, 0.7),
-            /* Light white gradient */
-            rgba(0, 0, 0, 0.7)
-            /* Light white gradient */
-        ),
+            rgba(0, 0, 0, 0.7)),
         url('src/assets/orderBG.jpg');
-    /* Background image */
     background-size: cover;
-    /* Cover the entire area */
     background-position: center;
-    /* Center the background image */
     background-repeat: no-repeat;
-    /* Prevent repetition of the image */
     height: 100vh;
-    /* Ensure it takes full viewport height */
     display: flex;
-    /* Use flexbox to center content */
     align-items: center;
-    /* Vertically center content */
     justify-content: center;
-    /* Horizontally center content */
 }
 
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
@@ -82,7 +71,6 @@
 
 .select-no-arrow option {
     background-color: white;
-    /* Keeps the options background white */
 }
 
 .fancy-button {
@@ -101,7 +89,6 @@
     box-shadow: 0px 6px 15px rgba(0, 123, 255, 0.4);
 }
 
-/*////////////////////*/
 
 .box-shadow {
     -webkit-box-shadow: 0 1px 1px rgba(72, 78, 85, .6);
@@ -117,7 +104,6 @@
 
 .box-shadow:hover {
     -webkit-box-shadow: 0 20px 40px rgba(100, 150, 255, 0.5);
-    /* Soft blue shadow */
     box-shadow: 0 20px 40px rgba(100, 150, 255, 0.5);
     -webkit-transform: translateY(-15px);
     -moz-transform: translateY(-15px);

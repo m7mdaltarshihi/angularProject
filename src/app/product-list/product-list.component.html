@@ -1,7 +1,6 @@
 <div class="container mt-5 px-2">
   <div class="d-flex justify-content-between align-items-center p-3 mb-4 border-bottom header bg-light shadow-sm rounded">
     
-    <!-- Left Section: Search Input -->
     <div class="input-group" style="width: 300px;">
         <input #txtProductNameSearch 
                type="text" 
@@ -38,7 +37,6 @@
       </button>
     </div>
 
-    <!-- Right Section: Add Product Button -->
     <div>
         <button type="button" 
                 routerLink="/home/newProduct" 
@@ -52,7 +50,6 @@
   <div class="">
   </div>
   
-  <!-- Table Section -->
   <div class="table-responsive shadow rounded" style="background-color: #f8f9fa; padding: 20px;">
     <table class="table align-middle table-hover mb-0">
       <thead class="bg-light">
@@ -68,11 +65,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products; let i = index">
-          <td>{{ i + 1 }}</td> <!-- Counter starts from 1 -->
+          <td>{{ i + 1 }}</td>
           <td><img [src]="product.image ? product.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtQK-vPXWRiGQdmA-tTZUsUhtqEyiOyE10Mg&s'" alt="{{ product.name }}" class="img-fluid product-image"></td>
           <td>{{ product.name }}</td>
           <td>{{ product.sku }}</td>
-          <td [ngClass]="{'target-danger': product.stock <= 10}">{{ product.stock }}</td>
+          <td *ngIf="!(product.stock==0)"  [ngClass]="{'target-danger': product.stock <= 10}"> {{ product.stock }} </td>
+          <td *ngIf="product.stock==0" [ngClass]="{'target-danger': product.stock <= 10}"> Out of Stock</td>
           <td>{{ product.price }}</td>
           <td>
             <div class="d-flex gap-3 icon-group">
@@ -82,29 +80,24 @@
             </div>
           </td>
 
-          <!-- Product Modal -->
           <div *ngIf="enable" id="detailsModal" class="modal fade" tabindex="-1" aria-labelledby="productDetailsModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" style="max-height: 90vh;">
               <div class="modal-content">
                 
-                <!-- Modal Header -->
                 <div class="modal-header bg-dark text-white">
                   <h5 class="modal-title" id="roleModalLabel">{{ 'ProductPage.productDetails' | translate }}</h5>
                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 
-                <!-- Modal Body -->
                 <div class="modal-body">
                   <div class="card mb-3 border-0 shadow-sm">
                     
-                    <!-- Product Image with Limited Height -->
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light" style="height: auto; overflow: hidden;">
                       <img [src]="productDetails?.image" class="card-img-top" alt="Product Image" style="height: auto; width: auto;" />
                       <a href="#!" class="stretched-link"></a>
                     </div>
                     
                     <div class="card-body">
-                      <!-- Product Name and SKU -->
                       <div class="row mb-4 align-items-center">
                         <div class="col-6">
                           <h5 class="card-title mb-1 text-dark fw-bold" style="color: #5179ff !important;">{{ productDetails?.name }}</h5>
@@ -114,13 +107,11 @@
                         </div>
                       </div>
                     
-                      <!-- Description -->
                       <div class="mb-4">
                         <h6 class="text-dark fw-bold">{{ 'ProductPage.description' | translate }}:</h6>
                         <p class="text-muted" style="line-height: 1.5; font-size: 1rem;">{{ productDetails?.description }}</p>
                       </div>
                     
-                      <!-- Price and Stock Information -->
                       <div class="row">
                         <div class="col-6">
                           <h6 class="text-dark fw-bold">{{ 'ProductPage.productPrice' | translate }}</h6>
@@ -136,7 +127,6 @@
                   </div>
                 </div>
                 
-                <!-- Modal Footer -->
                 <div class="modal-footer">
                   <div class="d-flex justify-content-center gap-3">
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">{{ 'ProductPage.close' | translate }}</button>

@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     , private translateService: TranslateService
   ) {
     this.liMenu = Menu;
-    debugger
+
     const storedRoles = localStorage.getItem("UserRoles");
 
     if (storedRoles) {
@@ -36,17 +36,12 @@ export class HomeComponent implements OnInit {
       this.roles = [];
     }
 
-    // Loop through each role to filter the menu
     this.roles.forEach((role: string) => {
       this.liMenu.forEach((element: any) => {
-        // Ensure element.role is an array before using .find
         let rolesArray = Array.isArray(element.role) ? element.role : element.role.split(',');
-
-        // Check if the menu item has a matching role
         const isInRole = rolesArray.find((x: any) => x === role);
 
         if (isInRole !== undefined) {
-          // If the role matches, add the menu item to the filtered list
           this.filteredMenu.push(element);
         }
       });
@@ -56,13 +51,12 @@ export class HomeComponent implements OnInit {
     const storedUser = localStorage.getItem('UserInfo')
     if (storedUser) {
       this.user = JSON.parse(storedUser)
-      console.log(this.user)
+      // console.log(this.user)
 
     }
   }
   @ViewChild('view') goToView!: ElementRef
   ngOnInit(): void {
-    // this.name = this.activatedRoute.snapshot.queryParams["username"]
   }
   changeLanguage() {
     this.translateService.use(this.language.nativeElement.value);

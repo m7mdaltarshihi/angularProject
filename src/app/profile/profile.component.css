@@ -1,15 +1,12 @@
-/* Add a shadow effect to the card for a polished look */
 .card {
     border-radius: 15px;
 }
 
-/* Profile Image styling */
 .card-body img {
     border: 3px solid #007bff;
     border-radius: 50%;
 }
 
-/* Styling for buttons */
 .btn {
     font-size: 1rem;
 }
@@ -33,13 +30,11 @@
     background-color: #e2e6ea;
 }
 
-/* Form inputs */
 input.form-control {
     border-radius: 10px;
     font-size: 1rem;
 }
 
-/* Input and button spacing */
 .mt-5 {
     margin-top: 3rem;
 }
@@ -56,12 +51,10 @@ input.form-control {
     margin-left: 1.5rem;
 }
 
-/* Styling for change password section */
 form {
     padding: 1rem;
 }
 
-/* Responsive Design for Mobile */
 @media (max-width: 768px) {
     .container-fluid {
         padding-left: 15px;
@@ -83,16 +76,13 @@ form {
     color: #888;
 }
 
-/* Optional: Style when hovering over the placeholder */
 .image-placeholder:hover {
     background-color: #e9ecef;
     cursor: pointer;
 }
 
-/* Optional: You can also add an image as a background if needed */
 .image-placeholder.with-image {
     background-image: url('src/assets/placeholder.jpg');
-    /* Placeholder image */
     background-size: cover;
     background-position: center;
 }
@@ -100,9 +90,7 @@ form {
 .image-placeholder {
     position: relative;
     width: 120px;
-    /* Set specific width */
     height: 120px;
-    /* Set specific height */
     border: 2px dashed #ccc;
     border-radius: 50%;
     display: flex;
@@ -136,12 +124,9 @@ form {
 
 .profile-pic-container {
     width: 120px;
-    /* Set specific width */
     height: 120px;
-    /* Set specific height */
     border-radius: 50%;
     overflow: hidden;
-    /* Ensures the image stays within the circle */
     border: 2px solid #ccc;
     display: flex;
     justify-content: center;
@@ -152,10 +137,8 @@ form {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Ensures the image scales to fill the circle */
 }
 
 .profile-pic-container:hover {
     border-color: #007bff;
-    /* Optional: Change border color on hover */
 }

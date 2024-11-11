@@ -49,9 +49,9 @@ export class NewWarehouseComponent implements OnInit {
 
   EditWarehouse() {
 
-    this.warehouseService.LoadById(this.warehouseId).subscribe({
+    this.warehouseService.loadById(this.warehouseId).subscribe({
       next: data => {
-        debugger
+
         this.form.controls['txtId'].setValue(data.warehouseId)
         this.form.controls['txtLocation'].setValue(data.location)
         this.form.controls['txtManager'].setValue(data.manager)
@@ -78,7 +78,6 @@ export class NewWarehouseComponent implements OnInit {
             confirmButtonText: "Add More Warehouses",
             denyButtonText: `Done`
           }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               this.ngOnInit()
             } else if (result.isDenied) {
@@ -91,7 +90,7 @@ export class NewWarehouseComponent implements OnInit {
   }
 
   Update() {
-    debugger
+
     if (this.form.valid) {
       var warehouse = new Warehouse();
       warehouse.warehouseId = this.form.value["txtId"]
@@ -99,6 +98,7 @@ export class NewWarehouseComponent implements OnInit {
       warehouse.manager = this.form.value["txtManager"]
       warehouse.maxCapacity = this.form.value["txtCapacity"]
       warehouse.status = this.parseBoolean(this.form.value["txtStatus"]);
+      warehouse.currentCapacity = warehouse.currentCapacity
 
 
       Swal.fire({
@@ -108,9 +108,8 @@ export class NewWarehouseComponent implements OnInit {
         confirmButtonText: "Save",
         denyButtonText: `Don't save`
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.warehouseService.UpdateWarehouse(warehouse).subscribe({
+          this.warehouseService.update(warehouse).subscribe({
 
             next: data => {
               Swal.fire("Updated Successfuly!", "", "success");

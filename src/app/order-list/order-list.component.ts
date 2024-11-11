@@ -18,20 +18,12 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // let order = this.orders.map(e => ({
 
-    //   ID: e.OrderId,
-    //   Quantity: e.Quantity,
-    //   PaymentMethod: e.PaymentMethod.toUpperCase(),
-    //   ShippingAddress: e.ShippingAddress,
-    //   CustomerName: e.CustomerName,
-    //   Status: e.Status
-    // }))
     this.loadAll()
   }
 
   LoadFormData(id: number) {
-    debugger
+
     this.router.navigate(['/home/newOrder'], { queryParams: { id: id } })
   }
 
@@ -54,7 +46,7 @@ export class OrderListComponent implements OnInit {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.orderService.Delete(orderId).subscribe({
+        this.orderService.delete(orderId).subscribe({
           next: data => {
             Swal.fire({
               title: "Deleted!",
@@ -78,7 +70,7 @@ export class OrderListComponent implements OnInit {
 
       this.loadAll()
     } else {
-      this.orderService.SearchByCustomer(this.customerName.nativeElement.value).subscribe({
+      this.orderService.searchByCustomer(this.customerName.nativeElement.value).subscribe({
         next: data => {
 
           this.orders = data
@@ -90,8 +82,8 @@ export class OrderListComponent implements OnInit {
   }
 
   DateSort() {
-    debugger
-    this.orderService.DateSort(this.isDecending).subscribe({
+
+    this.orderService.dateSort(this.isDecending).subscribe({
 
       next: data => {
         this.orders = data
@@ -105,9 +97,9 @@ export class OrderListComponent implements OnInit {
   }
 
   StatusSort(event: Event) {
-    debugger
+
     const status = (event.target as HTMLSelectElement).value
-    this.orderService.SortByStatus(status).subscribe({
+    this.orderService.sortByStatus(status).subscribe({
       next: data => {
         this.orders = data
       }
