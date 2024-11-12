@@ -41,14 +41,12 @@ export class ProductListComponent implements OnInit {
 
   loadAll() {
     this.productService.loadAll().subscribe({
-
       next: data => {
-
-
         this.products = data
       }
     })
   }
+
   loadAllById() {
 
     var info = localStorage.getItem('UserInfo');
@@ -120,9 +118,6 @@ export class ProductListComponent implements OnInit {
         } else {
           console.error('Modal element not found!');
         }
-      },
-      error: err => {
-        console.error('Error loading product:', err);
       }
     });
   }
@@ -148,7 +143,6 @@ export class ProductListComponent implements OnInit {
         next: data => {
 
           this.products = data
-          this.count = data.length
         }
       })
     }

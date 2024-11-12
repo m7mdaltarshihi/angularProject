@@ -28,7 +28,13 @@ export class OrderListComponent implements OnInit {
   }
 
   loadAll() {
-    this.orderService.loadAll().subscribe({
+    var info = localStorage.getItem('UserInfo');
+
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
+    }
+    this.orderService.loadAllById(warehouseId).subscribe({
 
       next: data => {
         this.orders = data
@@ -36,6 +42,12 @@ export class OrderListComponent implements OnInit {
     })
   }
   deleteOrder(orderId: number) {
+    var info = localStorage.getItem('UserInfo');
+
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
+    }
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -65,12 +77,17 @@ export class OrderListComponent implements OnInit {
     this.loadAll()
   }
   search() {
+    var info = localStorage.getItem('UserInfo');
 
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
+    }
     if (this.customerName.nativeElement.value === "") {
 
       this.loadAll()
     } else {
-      this.orderService.searchByCustomer(this.customerName.nativeElement.value).subscribe({
+      this.orderService.searchByCustomer(this.customerName.nativeElement.value, warehouseId).subscribe({
         next: data => {
 
           this.orders = data
@@ -83,7 +100,13 @@ export class OrderListComponent implements OnInit {
 
   dateSort() {
 
-    this.orderService.dateSort(this.isDecending).subscribe({
+    var info = localStorage.getItem('UserInfo');
+
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
+    }
+    this.orderService.dateSort(this.isDecending, warehouseId).subscribe({
 
       next: data => {
         this.orders = data
@@ -97,9 +120,14 @@ export class OrderListComponent implements OnInit {
   }
 
   statusSort(event: Event) {
+    var info = localStorage.getItem('UserInfo');
 
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId;
+    }
     const status = (event.target as HTMLSelectElement).value
-    this.orderService.sortByStatus(status).subscribe({
+    this.orderService.sortByStatus(status, warehouseId).subscribe({
       next: data => {
         this.orders = data
       }

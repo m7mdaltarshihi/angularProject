@@ -17,7 +17,9 @@ export class OrderService {
   loadAll(): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Order/GetAll`)
   }
-
+  loadAllById(id: number): Observable<any> {
+    return this.client.get(`${this.baseUrl}/api/Order/GetAllById?id=${id}`)
+  }
   insert(order: Order): Observable<any> {
     return this.client.post(`${this.baseUrl}/api/Order`, order)
 
@@ -34,16 +36,16 @@ export class OrderService {
     return this.client.put(`${this.baseUrl}/api/Order`, order)
 
   }
-  dateSort(isDecending: boolean): Observable<any> {
+  dateSort(isDecending: boolean, id: number): Observable<any> {
 
-    return this.client.get(`${this.baseUrl}/api/Order/DateSort?sort=${isDecending}`)
+    return this.client.get(`${this.baseUrl}/api/Order/DateSort?sort=${isDecending}&id=${id}`)
   }
-  searchByCustomer(customerName: string): Observable<any> {
+  searchByCustomer(customerName: string, id: number): Observable<any> {
 
-    return this.client.get(`${this.baseUrl}/api/Order/SearchByCustomer?customerName=${customerName}`)
+    return this.client.get(`${this.baseUrl}/api/Order/SearchByCustomer?customerName=${customerName}&id=${id}`)
   }
-  sortByStatus(status: string): Observable<any> {
+  sortByStatus(status: string, id: number): Observable<any> {
 
-    return this.client.get(`${this.baseUrl}/api/Order/SortByStatus?status=${status}`)
+    return this.client.get(`${this.baseUrl}/api/Order/SortByStatus?status=${status}&id=${id}`)
   }
 }

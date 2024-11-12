@@ -32,10 +32,6 @@ export class UserListComponent implements OnInit {
       txtRoleName: ['', Validators.required],
     });
   }
-  saveRole() {
-    if (this.roleForm.valid) {
-    }
-  }
 
   loadAll() {
     this.userService.loadAllUsers().subscribe({
@@ -109,23 +105,25 @@ export class UserListComponent implements OnInit {
   }
   addRole() {
     debugger
-    var role = new Role()
+    if (this.roleForm.valid) {
+      var role = new Role()
 
-    role.name = this.roleForm.controls["txtRoleName"].value
+      role.name = this.roleForm.controls["txtRoleName"].value
 
-    this.userService.addRole(role).subscribe({
-      next: data => {
-        debugger
-        Swal.fire({
-          icon: "success",
-          title: "Role Added",
+      this.userService.addRole(role).subscribe({
+        next: data => {
+          debugger
+          Swal.fire({
+            icon: "success",
+            title: "Role Added",
 
-        });
+          });
 
 
 
-      }
-    })
+        }
+      })
+    }
   }
   sortByRole(event: Event) {
     const selectedRole = (event.target as HTMLSelectElement).value;

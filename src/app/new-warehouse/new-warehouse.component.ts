@@ -43,7 +43,8 @@ export class NewWarehouseComponent implements OnInit {
       txtManager: ['', Validators.required],
       txtCapacity: ['', Validators.required],
       txtStatus: ['', Validators.required],
-      txtId: ['']
+      txtId: [''],
+      usedCapacity: ['']
     })
   }
 
@@ -57,6 +58,7 @@ export class NewWarehouseComponent implements OnInit {
         this.form.controls['txtManager'].setValue(data.manager)
         this.form.controls['txtCapacity'].setValue(data.maxCapacity)
         this.form.controls['txtStatus'].setValue(data.status)
+        this.form.controls['usedCapacity'].setValue(data.currentCapacity)
 
       }
     })
@@ -98,7 +100,7 @@ export class NewWarehouseComponent implements OnInit {
       warehouse.manager = this.form.value["txtManager"]
       warehouse.maxCapacity = this.form.value["txtCapacity"]
       warehouse.status = this.parseBoolean(this.form.value["txtStatus"]);
-      warehouse.currentCapacity = warehouse.currentCapacity
+      warehouse.currentCapacity = this.form.value["usedCapacity"]
 
 
       Swal.fire({

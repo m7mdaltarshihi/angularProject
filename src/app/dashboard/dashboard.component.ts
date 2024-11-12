@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
       this.totalWarehouses = warehouses.length;
       this.warehouses = warehouses.map((warehouse: any) => ({
         ...warehouse,
-        capacityUsage: (warehouse.currentCapacity / warehouse.maxCapacity) * 100
+        capacityUsage: Math.round((warehouse.currentCapacity / warehouse.maxCapacity) * 100)
       }));
     });
   }
