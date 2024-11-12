@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
 
     const storedRoles = localStorage.getItem("UserRoles");
 
+
     if (storedRoles) {
       try {
         this.roles = JSON.parse(storedRoles);

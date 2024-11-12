@@ -44,8 +44,8 @@ export class ProductListComponent implements OnInit {
 
       next: data => {
 
-        this.products = data
 
+        this.products = data
       }
     })
   }

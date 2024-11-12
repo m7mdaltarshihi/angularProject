@@ -20,7 +20,7 @@ export class NewProductComponent implements OnInit {
 
   }
   form!: FormGroup
-  warehouses!: Warehouse[]
+  warehouse!: Warehouse
   warehouseId!: number
   productId!: number
   isEdit: boolean = false
@@ -55,6 +55,7 @@ export class NewProductComponent implements OnInit {
 
     this.productService.loadById(this.productId).subscribe({
       next: data => {
+        debugger
         this.form.controls['txtName'].setValue(data.name)
         this.form.controls['txtPrice'].setValue(data.price)
         this.form.controls['txtSKU'].setValue(data.sku)
@@ -68,16 +69,16 @@ export class NewProductComponent implements OnInit {
   }
 
   getWarehouses() {
-
+    debugger
     var info = localStorage.getItem('UserInfo');
     if (info) {
       var parsedInfo = JSON.parse(info);
       var warehouseId = parsedInfo.warehouseId;
-      this.productService.loadAllById(warehouseId).subscribe({
+      this.warehouseService.loadById(warehouseId).subscribe({
         next: data => {
-
-          this.warehouses = data
-          this.form.controls["selectWarehouse"].setValue(data[0].warehouseId)
+          debugger
+          this.warehouse = data
+          this.form.controls["selectWarehouse"].setValue(data.warehouseId)
         }
       })
     }
@@ -97,6 +98,7 @@ export class NewProductComponent implements OnInit {
     if (this.form.valid) {
 
       var product = new Product();
+      debugger
       product.name = this.form.value["txtName"]
       product.price = parseFloat(this.form.value["txtPrice"])
       product.sku = this.form.value["txtSKU"]

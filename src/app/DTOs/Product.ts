@@ -10,5 +10,5 @@ export class Product {
     stock!: number
     image?: string
     warehouseId!: number
-    warehouse!: Warehouse
+    warehouse?: Warehouse
 }

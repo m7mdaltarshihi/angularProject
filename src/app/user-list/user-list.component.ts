@@ -4,7 +4,6 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { Role } from '../DTOs/Role';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AssignRole } from '../DTOs/AssignRole';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +18,6 @@ export class UserListComponent implements OnInit {
   user!: User
   roles!: Role[]
   roleForm!: FormGroup;
-  assignRoles!: AssignRole
   constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) { }
   ngOnInit(): void {
 
@@ -31,8 +29,7 @@ export class UserListComponent implements OnInit {
 
   buildRoleForm() {
     this.roleForm = this.formBuilder.group({
-      txtName: ['', Validators.required],
-      selectRole: ['', Validators.required]
+      txtRoleName: ['', Validators.required],
     });
   }
   saveRole() {
@@ -110,19 +107,18 @@ export class UserListComponent implements OnInit {
 
 
   }
-  assignRole() {
+  addRole() {
+    debugger
+    var role = new Role()
 
-    var assignRoles = new AssignRole()
+    role.name = this.roleForm.controls["txtRoleName"].value
 
-    assignRoles.userName = this.roleForm.controls["txtName"].value
-    assignRoles.roleName = this.roleForm.controls["selectRole"].value
-
-    this.userService.assignRole(assignRoles).subscribe({
+    this.userService.addRole(role).subscribe({
       next: data => {
-
+        debugger
         Swal.fire({
-          icon: "info",
-          title: "Role Assigned",
+          icon: "success",
+          title: "Role Added",
 
         });
 

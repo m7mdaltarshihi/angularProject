@@ -33,11 +33,19 @@
     </div>
 
     <div>
-        <button type="button" 
-                routerLink="/home/newUser" 
+      <button type="button" 
+              routerLink="/home/newUser" 
+              class="btn btn-primary" 
+              style="border-radius: 8px;">
+          <i class="fa-solid fa-person-circle-plus" style="color: #fff; font-size: 1.2rem;"></i> {{ 'Header.addUser' | translate }}
+      </button>
+  </div>
+
+    <div>
+        <button  data-bs-toggle="modal" data-bs-target="#roleModal" type="button" 
                 class="btn btn-primary" 
                 style="border-radius: 8px;">
-            <i class="fa-solid fa-person-circle-plus" style="color: #fff; font-size: 1.2rem;"></i> {{ 'Header.addUser' | translate }}
+                <i class="fa-solid fa-person-circle-question icon-btn" ></i> {{ 'Modal.assignRole' | translate }}
         </button>
     </div>
 </div>
@@ -68,59 +76,50 @@
           <td hidden #txtUserId >{{user.userId}}</td>
           <td>
             <div class="d-flex gap-3 icon-group">
-              <i data-bs-toggle="modal" data-bs-target="#roleModal" class="fa-solid fa-person-circle-question text-success icon-btn" (click)="loadData(user.userName)"></i>
               <i class="fa-solid fa-pen text-primary icon-btn" (click)="editUser(user.userId)"></i>
               <i class="fa-solid fa-trash text-danger icon-btn" (click)="deleteUser(user.userId)"></i>
             </div>
           </td>
-          <div id="roleModal" class="modal fade" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                  <h5 class="modal-title" id="roleModalLabel">{{ 'Modal.assignRole' | translate }}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form [formGroup]="roleForm">
-                    <div class="row g-3">
-                      <div class="col-12 col-md-8">
-                        <div class="form-outline">
-                          <label class="form-label" for="txtName">{{ 'Modal.name' | translate }}</label>
-                          <input 
-                            type="text" 
-                            class="form-control form-control-lg"  
-                            id="txtName"
-                            formControlName="txtName" 
-                            placeholder="{{ 'Modal.enterName' | translate }}"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="selectRole">{{ 'Modal.role' | translate }}</label>
-                          <select 
-                            class="form-select form-control-lg"  
-                            id="selectRole"
-                            formControlName="selectRole">
-                            <option selected disabled>{{ 'Modal.chooseRole' | translate }}</option>
-                            <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" style="color: #fff !important;" data-bs-dismiss="modal">{{ 'Modal.close' | translate }}</button>
-                  <button type="button" class="btn btn-primary" (click)="assignRole()">{{ 'Modal.assignRoleButton' | translate }}</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           
           
         </tr>
+        
       </tbody>
     </table>
+    <div id="roleModal" class="modal fade" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="roleModalLabel">{{ 'Modal.assignRole' | translate }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="roleForm">
+              <div class="row g-3">
+                <div class="col-12 col-md-8">
+                  <div class="form-outline">
+                    <label class="form-label" >{{ 'Modal.name' | translate }}</label>
+                    <input 
+                      type="text" 
+                      class="form-control form-control-lg"  
+                      formControlName="txtRoleName" 
+                      [placeholder]="'Modal.enterName' | translate"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                 
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" style="color: #fff !important;" data-bs-dismiss="modal">{{ 'Modal.close' | translate }}</button>
+            <button type="button" class="btn btn-primary" (click)="addRole()">{{ 'Modal.assignRoleButton' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

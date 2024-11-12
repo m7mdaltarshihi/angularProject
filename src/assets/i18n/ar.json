@@ -176,11 +176,11 @@
         "details": "التفاصيل"
     },
     "Modal": {
-        "assignRole": "تعيين الدور",
+        "assignRole": "اضافة الدور",
         "name": "الاسم",
         "enterName": "أدخل الاسم",
         "role": "الدور",
-        "chooseRole": "اختر دورًا",
+        "chooseRole": "ادخل اسم الدور",
         "close": "إغلاق",
         "assignRoleButton": "تعيين الدور"
     },

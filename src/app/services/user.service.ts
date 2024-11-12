@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AddUser } from '../DTOs/AddUser';
 import { User } from '../DTOs/User';
-import { AssignRole } from '../DTOs/AssignRole';
 import { SignIn } from '../DTOs/SignIn';
 import { environment } from 'src/environments/environment.development';
 import { ChangePassword } from '../DTOs/ChangePassword';
+import { Role } from '../DTOs/Role';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,10 @@ export class UserService {
 
     return this.client.post(`${this.baseUrl}/api/Users/AddUser`, newUser)
   }
+  addRole(newRole: Role): Observable<any> {
+
+    return this.client.post(`${this.baseUrl}/api/Users/AddRole`, newRole)
+  }
   searchByName(name: string): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/SearchByName?name=${name}`)
@@ -58,10 +62,6 @@ export class UserService {
   getAllRoles(): Observable<any> {
 
     return this.client.get(`${this.baseUrl}/api/Users/GetAllRoles`)
-  }
-  assignRole(assignRoleDTO: AssignRole): Observable<any> {
-
-    return this.client.post(`${this.baseUrl}/api/Users/AssignRole`, assignRoleDTO);
   }
   login(signIn: SignIn): Observable<any> {
 

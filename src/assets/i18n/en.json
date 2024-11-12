@@ -176,13 +176,13 @@
         "details": "Details"
     },
     "Modal": {
-        "assignRole": "Assign Role",
+        "assignRole": "Add Role",
         "name": "Name",
         "enterName": "Enter Name",
         "role": "Role",
         "chooseRole": "Choose a Role",
         "close": "Close",
-        "assignRoleButton": "Assign Role"
+        "assignRoleButton": "Add Role"
     },
     "Warehouse": {
         "searchPlaceholder": "Search...",

@@ -18,8 +18,10 @@ export class WarehouseService {
   loadAll(): Observable<any> {
     return this.client.get(`${this.baseUrl}/api/Warehouse/LoadAll`)
   }
-  loadAllById(warehouseId: number): Observable<any> {
-    return this.client.get(`${this.baseUrl}/api/Warehouse/LoadAllById?wareouseId=${warehouseId}`)
+  loadAllById(id: number): Observable<any> {
+    debugger
+    return this.client.get(`${this.baseUrl}/api/Warehouse/LoadAllById?id=${id}`)
+
   }
   insert(warehouse: Warehouse): Observable<any> {
 
