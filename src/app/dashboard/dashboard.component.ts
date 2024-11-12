@@ -30,20 +30,20 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.GetUsersCount()
-    this.fetchOrderData()
-    this.fetchWarehouseData()
-    this.fetchProductData()
+    this.getUsersCount()
+    this.getOrderData()
+    this.getWarehouseData()
+    this.getroductData()
   }
 
-  GetUsersCount() {
+  getUsersCount() {
     this.userService.loadAllUsers().subscribe(users => {
       this.totalUsers = users.length;
       this.recentUsers = users.slice(-3);
     });
   }
 
-  fetchOrderData() {
+  getOrderData() {
     this.orderService.loadAll().subscribe(orders => {
       this.totalOrders = orders.length;
       this.ordersPending = orders.filter((order: any) => order.status === 'Pending').length;
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
       this.ordersCancelled = orders.filter((order: any) => order.status === 'Cancelled').length;
     });
   }
-  fetchProductData() {
+  getroductData() {
     this.productService.loadAll().subscribe(products => {
       this.totalProducts = products.length;
       products.forEach((element: any) => {
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
-  fetchWarehouseData() {
+  getWarehouseData() {
     this.warehouseService.loadAll().subscribe(warehouses => {
       this.totalWarehouses = warehouses.length;
       this.warehouses = warehouses.map((warehouse: any) => ({

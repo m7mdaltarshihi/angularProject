@@ -59,7 +59,7 @@
       <tbody>
         <tr *ngFor="let user of users; let i = index">
           <td>{{i+1}}</td>
-          <td><img [src]="user.image ? user.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtQK-vPXWRiGQdmA-tTZUsUhtqEyiOyE10Mg&s'" class="img-fluid user-image"></td>
+          <td><img [src]="user.image ? user.image : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'" class="img-fluid user-image"></td>
           <td>{{user.name}}</td>
           <td>{{user.userName}}</td>
           <td>{{user.email}}</td>
