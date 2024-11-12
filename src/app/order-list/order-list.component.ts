@@ -22,7 +22,7 @@ export class OrderListComponent implements OnInit {
     this.loadAll()
   }
 
-  LoadFormData(id: number) {
+  loadFormData(id: number) {
 
     this.router.navigate(['/home/newOrder'], { queryParams: { id: id } })
   }
@@ -61,10 +61,10 @@ export class OrderListComponent implements OnInit {
     });
 
   }
-  ResetFilters() {
+  resetFilters() {
     this.loadAll()
   }
-  Search() {
+  search() {
 
     if (this.customerName.nativeElement.value === "") {
 
@@ -81,7 +81,7 @@ export class OrderListComponent implements OnInit {
 
   }
 
-  DateSort() {
+  dateSort() {
 
     this.orderService.dateSort(this.isDecending).subscribe({
 
@@ -96,7 +96,7 @@ export class OrderListComponent implements OnInit {
     }
   }
 
-  StatusSort(event: Event) {
+  statusSort(event: Event) {
 
     const status = (event.target as HTMLSelectElement).value
     this.orderService.sortByStatus(status).subscribe({

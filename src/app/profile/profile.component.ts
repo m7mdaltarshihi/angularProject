@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
       newPassword: ['']
     })
   }
-  ResetPassword() {
+  resetPassword() {
 
     if (this.passwordForm.value) {
       var changePassword = new ChangePassword()
@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
       })
     }
   }
-  EditProfile() {
+  editProfile() {
 
     this.form.enable()
     this.form.controls["txtUserName"].disable()
@@ -95,7 +95,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  Update() {
+  update() {
 
     this.user.name = this.form.controls['txtName'].value
     this.user.email = this.form.controls['txtEmail'].value

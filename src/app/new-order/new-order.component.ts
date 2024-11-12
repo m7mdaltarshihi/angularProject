@@ -38,7 +38,7 @@ export class NewOrderComponent implements OnInit {
     if (this.activatedRoute.snapshot.queryParams['id'] != undefined) {
       this.orderId = this.activatedRoute.snapshot.queryParams['id']
       this.isEdit = true
-      this.LoadFormData()
+      this.loadFormData()
     }
   }
 
@@ -96,7 +96,7 @@ export class NewOrderComponent implements OnInit {
       }
     })
   }
-  GetSelectedProduct(productId: number) {
+  getSelectedProduct(productId: number) {
 
     this.productService.loadById(productId).subscribe({
       next: data => {
@@ -146,7 +146,7 @@ export class NewOrderComponent implements OnInit {
   }
 
 
-  LoadFormData() {
+  loadFormData() {
 
     this.orderService.loadById(this.orderId).subscribe({
       next: data => {
@@ -164,7 +164,7 @@ export class NewOrderComponent implements OnInit {
       }
     })
   }
-  Update() {
+  update() {
 
     if (this.form.valid) {
       var order = new Order();

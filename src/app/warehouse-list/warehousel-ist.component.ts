@@ -59,10 +59,10 @@ export class WarehouselIstComponent implements OnInit {
       setTimeout(() => this.loadAll(), 200);
     });
   }
-  ResetFilters() {
+  resetFilters() {
     this.loadAll()
   }
-  Search() {
+  search() {
 
     if (this.location.nativeElement.value === "") {
 
@@ -77,7 +77,7 @@ export class WarehouselIstComponent implements OnInit {
       })
     }
   }
-  SortByCpacity() {
+  sortByCpacity() {
 
     this.warehouseService.sortByCapacity(this.isDecending).subscribe({
       next: data => {
@@ -91,7 +91,7 @@ export class WarehouselIstComponent implements OnInit {
     }
 
   }
-  FilterByStatus(event: Event) {
+  filterByStatus(event: Event) {
 
     let status = (event.target as HTMLSelectElement).value
 

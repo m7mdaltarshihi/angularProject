@@ -33,7 +33,7 @@ export class NewProductComponent implements OnInit {
 
       this.productId = this.activatedRouter.snapshot.queryParams['id']
       this.isEdit = true
-      this.LoadData()
+      this.loadData()
     }
   }
 
@@ -51,7 +51,7 @@ export class NewProductComponent implements OnInit {
     })
   }
 
-  LoadData() {
+  loadData() {
 
     this.productService.loadById(this.productId).subscribe({
       next: data => {

@@ -13,7 +13,7 @@
             </div>
 
             <div class="ms-md-auto">
-              <button class="btn btn-primary rounded-pill px-4 py-2 shadow-sm" (click)="EditProfile()">
+              <button class="btn btn-primary rounded-pill px-4 py-2 shadow-sm" (click)="editProfile()">
                 <i class="bi bi-pencil-fill me-2"></i> {{ 'ProfilePage.editProfile' | translate }}
               </button>
             </div>
@@ -89,7 +89,7 @@
             </div>
 
             <div class="d-flex justify-content-between mt-4" [ngClass]="{ 'd-none': !isEdit }">
-              <button type="submit" class="btn btn-success" (click)="Update()">{{ 'ProfilePage.saveChanges' | translate }}</button>
+              <button type="submit" class="btn btn-success" (click)="update()">{{ 'ProfilePage.saveChanges' | translate }}</button>
               <button type="reset" class="btn btn-outline-secondary">{{ 'ProfilePage.cancel' | translate }}</button>
             </div>
           </form>
@@ -109,7 +109,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-danger" (click)="ResetPassword()">{{ 'ProfilePage.changePasswordButton' | translate }}</button>
+              <button type="submit" class="btn btn-danger" (click)="resetPassword()">{{ 'ProfilePage.changePasswordButton' | translate }}</button>
             </form>
           </div>
         </div>

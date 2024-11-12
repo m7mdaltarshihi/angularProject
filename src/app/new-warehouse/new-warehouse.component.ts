@@ -32,7 +32,7 @@ export class NewWarehouseComponent implements OnInit {
     if (this.activatedRoute.snapshot.queryParams['id'] != undefined) {
 
       this.warehouseId = this.activatedRoute.snapshot.queryParams['id']
-      this.EditWarehouse()
+      this.editWarehouse()
       this.isEdit = true
     }
   }
@@ -47,7 +47,7 @@ export class NewWarehouseComponent implements OnInit {
     })
   }
 
-  EditWarehouse() {
+  editWarehouse() {
 
     this.warehouseService.loadById(this.warehouseId).subscribe({
       next: data => {
@@ -89,7 +89,7 @@ export class NewWarehouseComponent implements OnInit {
     }
   }
 
-  Update() {
+  update() {
 
     if (this.form.valid) {
       var warehouse = new Warehouse();

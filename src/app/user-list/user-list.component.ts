@@ -24,7 +24,7 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
 
     this.loadAll()
-    this.GetAllRoles()
+    this.getAllRoles()
     this.buildRoleForm()
 
   }
@@ -79,10 +79,10 @@ export class UserListComponent implements OnInit {
       setTimeout(() => this.loadAll(), 200);
     });
   }
-  ResetFilters() {
+  resetFilters() {
     this.loadAll()
   }
-  Search() {
+  search() {
 
     if (this.name.nativeElement.value === "") {
 
@@ -97,20 +97,20 @@ export class UserListComponent implements OnInit {
       })
     }
   }
-  GetAllRoles() {
+  getAllRoles() {
     this.userService.getAllRoles().subscribe({
       next: data => {
         this.roles = data
       }
     })
   }
-  LoadData(userName: string) {
+  loadData(userName: string) {
 
     this.roleForm.controls["txtName"].setValue(userName)
 
 
   }
-  AssignRole() {
+  assignRole() {
 
     var assignRoles = new AssignRole()
 
@@ -131,7 +131,7 @@ export class UserListComponent implements OnInit {
       }
     })
   }
-  SortByRole(event: Event) {
+  sortByRole(event: Event) {
     const selectedRole = (event.target as HTMLSelectElement).value;
     this.userService.sortByRole(selectedRole).subscribe({
       next: data => {

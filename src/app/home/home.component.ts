@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate([`/home/${view}`]);
   }
 
-  Logout() {
+  logout() {
 
     Swal.fire({
       title: "Are you sure?",

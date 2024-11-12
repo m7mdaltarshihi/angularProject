@@ -7,21 +7,21 @@
                placeholder="{{ 'Warehouse.searchPlaceholder' | translate }}" 
                aria-label="Search"
                style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"/>
-        <button class="btn btn-outline-secondary" (click)="Search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+        <button class="btn btn-outline-secondary" (click)="search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
             <i class="fas fa-search"></i>
         </button>
     </div>
 
     <div class="d-flex align-items-center">
         <button type="button" 
-        (click)="ResetFilters()"  
+        (click)="resetFilters()"  
           class="btn btn-outline-info me-3 d-flex align-items-center" 
           style="border-radius: 8px; color: #007bff; border-color: #007bff;">
          <i class="fas fa-sync-alt me-1"></i> {{ 'Warehouse.reset' | translate }}
         </button>
         
         <div>
-            <select (change)="FilterByStatus($event)" 
+            <select (change)="filterByStatus($event)" 
                     class="form-select filter-select bg-light" 
                     style="width: 180px; border-radius: 8px;">
                 <option selected disabled>{{ 'Warehouse.filterByStatus' | translate }}</option>
@@ -48,7 +48,7 @@
           <th scope="col">#</th>
           <th scope="col">{{ 'Warehouse.location' | translate }}</th>
           <th scope="col">{{ 'Warehouse.manager' | translate }}</th>
-          <th scope="col">{{ 'Warehouse.maxCapacity' | translate }} <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="SortByCpacity()"></i></th>
+          <th scope="col">{{ 'Warehouse.maxCapacity' | translate }} <i class="fa-solid fa-sort" style="cursor: pointer; margin-left: 5px; color: #7f8083;" (click)="sortByCpacity()"></i></th>
           <th scope="col">{{ 'Warehouse.usedCapacity' | translate }}</th>
           <th scope="col">{{ 'Warehouse.status' | translate }}</th>
           <th scope="col">{{ 'Warehouse.actions' | translate }}</th>

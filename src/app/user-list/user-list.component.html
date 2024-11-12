@@ -8,7 +8,7 @@
                placeholder="{{ 'Header.searchPlaceholder' | translate }}" 
                aria-label="Search"
                style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"/>
-        <button class="btn btn-outline-secondary" (click)="Search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
+        <button class="btn btn-outline-secondary" (click)="search()" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;">
             <i class="fas fa-search"></i>
         </button>
     </div>
@@ -16,14 +16,14 @@
     <div class="d-flex align-items-center">
         
         <button type="button" 
-        (click)="ResetFilters()"  
+        (click)="resetFilters()"  
           class="btn btn-outline-info me-3 d-flex align-items-center" 
           style="border-radius: 8px; color: #007bff; border-color: #007bff;">
          <i class="fas fa-sync-alt me-1"></i> {{ 'Header.reset' | translate }}
         </button>
         
         <div>
-            <select (change)="SortByRole($event)" 
+            <select (change)="sortByRole($event)" 
                     class="form-select filter-select bg-light" 
                     style="width: 180px; border-radius: 8px;">
                 <option selected disabled>{{ 'Header.filterByRole' | translate }}</option>
@@ -68,7 +68,7 @@
           <td hidden #txtUserId >{{user.userId}}</td>
           <td>
             <div class="d-flex gap-3 icon-group">
-              <i data-bs-toggle="modal" data-bs-target="#roleModal" class="fa-solid fa-person-circle-question text-success icon-btn" (click)="LoadData(user.userName)"></i>
+              <i data-bs-toggle="modal" data-bs-target="#roleModal" class="fa-solid fa-person-circle-question text-success icon-btn" (click)="loadData(user.userName)"></i>
               <i class="fa-solid fa-pen text-primary icon-btn" (click)="editUser(user.userId)"></i>
               <i class="fa-solid fa-trash text-danger icon-btn" (click)="deleteUser(user.userId)"></i>
             </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" style="color: #fff !important;" data-bs-dismiss="modal">{{ 'Modal.close' | translate }}</button>
-                  <button type="button" class="btn btn-primary" (click)="AssignRole()">{{ 'Modal.assignRoleButton' | translate }}</button>
+                  <button type="button" class="btn btn-primary" (click)="assignRole()">{{ 'Modal.assignRoleButton' | translate }}</button>
                 </div>
               </div>
             </div>

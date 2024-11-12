@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.LoadAllById()
+    this.loadAllById()
   }
 
   loadAll() {
@@ -49,7 +49,7 @@ export class ProductListComponent implements OnInit {
       }
     })
   }
-  LoadAllById() {
+  loadAllById() {
 
     var info = localStorage.getItem('UserInfo');
 
@@ -95,7 +95,7 @@ export class ProductListComponent implements OnInit {
               text: "Your product has been deleted.",
               icon: "success"
             });
-            this.LoadAllById()
+            this.loadAllById()
           },
 
         })
@@ -128,7 +128,7 @@ export class ProductListComponent implements OnInit {
   }
 
 
-  Search() {
+  search() {
 
     var info = localStorage.getItem('UserInfo');
 
@@ -139,7 +139,7 @@ export class ProductListComponent implements OnInit {
 
     if (this.productName.nativeElement.value === "") {
 
-      this.LoadAllById()
+      this.loadAllById()
     } else {
 
 
@@ -154,7 +154,7 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  StockSort() {
+  stockSort() {
 
     var info = localStorage.getItem('UserInfo');
 
@@ -175,7 +175,7 @@ export class ProductListComponent implements OnInit {
       this.isDecending = true
     }
   }
-  PriceSort() {
+  priceSort() {
     var info = localStorage.getItem('UserInfo');
 
     if (info) {
@@ -196,7 +196,7 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  BelowStockThreshhold() {
+  belowStockThreshhold() {
 
     var info = localStorage.getItem('UserInfo');
 
@@ -214,6 +214,6 @@ export class ProductListComponent implements OnInit {
   }
   ResetFilters() {
     this.count = 0
-    this.LoadAllById()
+    this.loadAllById()
   }
 }
